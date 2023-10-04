@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: confdb
+      POSTGRES_USER: confdb
+      POSTGRES_PASSWORD: confdb
+    volumes:
+      - 'pgdataconf:/var/lib/postgresql/data'
+
+  confluence-server:
+    depends_on:
+      - postgresql
+    image: atlassian/confluence:latest
+    ports:
+      - '8090:8090'
+      - '8091:8091'
+    volumes:
+      - 'conf-home:/var/atlassian/application-data/confluence'
+    environment:
+      ATL_JDBC_URL: jdbc:postgresql://postgresql:5432/confdb
+      ATL_JDBC_USER: confdb
+      ATL_JDBC_PASSWORD: confdb
+      ATL_DB_TYPE: postgresql
+      ATL_DB_DRIVER: org.postgresql.Driver
+      ATL_DB_SCHEMA_NAME: public
+
+volumes:
+  pgdataconf: {}
+  conf-home: {}
