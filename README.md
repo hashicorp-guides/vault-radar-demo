@@ -1,2 +1,4 @@
 # vault-radar-demo
-A repository for `vault-radar` CLI demo content and documentation
+This is a repository for `vault-radar` CLI demo content and documentation.
+
+[`vault-radar` Documentation](docs/README.md)
