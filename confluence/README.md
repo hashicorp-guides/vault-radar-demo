@@ -51,6 +51,17 @@ http://localhost:8090/pages/viewinfo.action?pageId=12345 # 12345 is the page ID
 
 The command with use the `sample/secrets.yaml` as a source of secrets to occassionally add to the page contents.
 
+## My confluence instance seems to be in a bad state and the container keeps crashing
+To fix this, first bring down all the containers:
+```
+docker-compose -f confluence.yaml down
+```
+Then delete the volumes
+```
+docker volume rm confluence_conf-home confluence_pgdataconf
+```
+You can retry bootstrapping now! Good Luck!
+
 ## To Do
 * Multiple Confluence instances instructions
 
