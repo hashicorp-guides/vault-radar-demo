@@ -49,7 +49,7 @@ http://localhost:8090/pages/viewinfo.action?pageId=12345 # 12345 is the page ID
   * feel free to change other variables like the number of pages to create, Space Name, Key or Description.
 * run `go run cmd/main.go` if there are errors, feel free to reach out, otherwise if it completes without any errors then your instance should be updates with additional content
 
-The command with use the `sample/secrets.yaml` as a source of secrets to occassionally add to the page contents.
+The command with use the `secrets.yaml` as a source of secrets to occassionally add to the page contents.
 
 ## My confluence instance seems to be in a bad state and the container keeps crashing
 To fix this, first bring down all the containers:

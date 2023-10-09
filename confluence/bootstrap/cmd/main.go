@@ -34,7 +34,7 @@ const (
 	userName            = "admin" // confluence server
 	password            = "admin" // confluence server
 
-	sampleSecretsPath = "../../sample/secrets.yaml"
+	sampleSecretsPath = "../../secrets.yaml"
 )
 
 // restClient is the http client used to communicate with the confluence instance
