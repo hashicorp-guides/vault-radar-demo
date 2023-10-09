@@ -19,7 +19,7 @@ Root token: <root-token>
 ==============================================
 ```
 
-The secrets created will use values from `../sample/secrets.yaml`. The `yq` tool is required to parse these values from
+The secrets created will use values from `../secrets.yaml`. The `yq` tool is required to parse these values from
 the YAML file. Its GitHub repo provides [installation steps](https://github.com/mikefarah/yq#install) for various systems.
 The bootstrap scripts will also change the time of your system clock in order to mimic secrets that have been created in
 the past. This is achieved using GNU `date`. If you are using macOS then you will need to run the following to ensure
