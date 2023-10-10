@@ -29,10 +29,13 @@ const (
 	// 1 / secretSprinkleRatio = % chance a secret will be included in a generated page
 	secretSprinkleRatio = 3
 
-	// Authentication Credentials
-	personalAccessToken = ""      // confluence server v7.9+ only
-	userName            = "admin" // confluence server
-	password            = "admin" // confluence server
+	// Confluence Cloud Authentication
+	atlassianAPIToken = "" // Confluence Cloud Only
+	atlassianEmail    = "" // Confluence Cloud Only
+	// Confluence Server Authentication
+	personalAccessToken = "" // Confluence Server v7.9+ only
+	userName            = "" // Confluence Server only
+	password            = "" // Confluence Server
 
 	sampleSecretsPath = "../../secrets.yaml"
 )
@@ -63,6 +66,15 @@ func main() {
 	}
 
 	fmt.Println("bootstrapping complete")
+}
+
+// pageRequestBody is a struct representing a json blob for a confluence page in a request or response
+type pageRequestBody struct {
+	Type    string    `json:"type,omitempty"`
+	Title   string    `json:"title,omitempty" fake:"{sentence:4}"`
+	Space   *space    `json:"space,omitempty"`
+	Version *version  `json:"version,omitempty" fake:"skip"`
+	Body    *pageBody `json:"body,omitempty"`
 }
 
 // space is a struct representing a space json blob in a confluence request/response
@@ -152,7 +164,13 @@ func getClient() *http.Client {
 
 // spaceExistsAlready fetches the space, and returns false if makes and executes the request to create a Confluence space
 func spaceExistsAlready(ctx context.Context) bool {
-	url := confluenceInstanceURL + "/rest/api/space/" + spaceKey
+	url := confluenceInstanceURL
+	if isCloud() {
+		url = url + "/wiki"
+	}
+
+	url = url + "/rest/api/space/" + spaceKey
+
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
 		fmt.Printf("error building request to fetch a space: %s\n", err)
@@ -178,16 +196,19 @@ func spaceExistsAlready(ctx context.Context) bool {
 
 // createSpace makes and executes the request to create a Confluence space
 func createSpace(ctx context.Context) {
-	url := confluenceInstanceURL + "/rest/api/space"
+	url := confluenceInstanceURL
+	if isCloud() {
+		url = url + "/wiki"
+	}
+
+	url = url + "/rest/api/space"
 
 	body := struct {
-		Key         string `json:"key"`
-		Name        string `json:"name"`
-		Description string `json:"string"`
+		Key  string `json:"key"`
+		Name string `json:"name"`
 	}{
-		Key:         spaceKey,
-		Name:        spaceName,
-		Description: spaceDescription,
+		Key:  spaceKey,
+		Name: spaceName,
 	}
 
 	bb := new(bytes.Buffer)
@@ -214,13 +235,6 @@ func createSpace(ctx context.Context) {
 }
 
 func createPage(ctx context.Context, secretProvider *secretProvider) string {
-	var body pageRequestBody
-	gofakeit.Struct(&body)
-	body.Type = "page"
-	body.Space.Key = spaceKey
-	body.Body.Storage.Representation = "storage"
-	// body.Version = nil
-
 	var secret interface{}
 	r := rand.Intn(secretSprinkleRatio)
 	if r == 0 {
@@ -237,6 +251,11 @@ func createPage(ctx context.Context, secretProvider *secretProvider) string {
 		}
 	}
 
+	var body pageRequestBody
+	gofakeit.Struct(&body)
+	body.Type = "page"
+	body.Space.Key = spaceKey
+	body.Body.Storage.Representation = "storage"
 	body.Body.Storage.Value = fmt.Sprintf(`<p>%s<br/><br/>%s<br/><br/>%s</p>`,
 		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
 		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
@@ -249,7 +268,11 @@ func createPage(ctx context.Context, secretProvider *secretProvider) string {
 		os.Exit(1)
 	}
 
-	url := confluenceInstanceURL + "/rest/api/content"
+	url := confluenceInstanceURL
+	if isCloud() {
+		url = url + "/wiki"
+	}
+	url = url + "/rest/api/content"
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, url, bb)
 	if err != nil {
@@ -282,7 +305,11 @@ func createPage(ctx context.Context, secretProvider *secretProvider) string {
 
 // updatePage constructs and executes a request to update a page similar to how it's created
 func updatePage(ctx context.Context, pageID string, v int, secretProvider *secretProvider) {
-	url := confluenceInstanceURL + "/rest/api/content" + "/" + pageID
+	url := confluenceInstanceURL
+	if isCloud() {
+		url = url + "/wiki"
+	}
+	url = url + "/rest/api/content" + "/" + pageID
 
 	var secret string
 	r := rand.Intn(secretSprinkleRatio)
@@ -291,18 +318,20 @@ func updatePage(ctx context.Context, pageID string, v int, secretProvider *secre
 		secret = fmt.Sprintf("%v\n", secretProvider.Get())
 	}
 
+	pageContent := fmt.Sprintf(`<p>%s<br/><br/>%s<br/><br/>%s</p>`,
+		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
+		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
+		secret)
+
 	updatePageBody := pageRequestBody{
 		Title:   gofakeit.Sentence(4),
 		Type:    "page",
 		Version: &version{Number: v},
-	}
-	updatePageBody.Body = &pageBody{
-		Storage: &storage{
-			Representation: "storage",
-			Value: fmt.Sprintf(`<p>%s<br/><br/>%s<br/><br/>%s</p>`,
-				gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
-				gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
-				secret),
+		Body: &pageBody{
+			Storage: &storage{
+				Representation: "storage",
+				Value:          pageContent,
+			},
 		},
 	}
 
@@ -328,15 +357,6 @@ func updatePage(ctx context.Context, pageID string, v int, secretProvider *secre
 	checkResponse(resp)
 }
 
-// pageRequestBody is a struct representing a json blob for a confluence page in a request or response
-type pageRequestBody struct {
-	Type    string    `json:"type,omitempty"`
-	Title   string    `json:"title,omitempty" fake:"{sentence:4}"`
-	Space   *space    `json:"space,omitempty"`
-	Body    *pageBody `json:"body,omitempty"`
-	Version *version  `json:"version,omitempty" fake:"skip"`
-}
-
 // setHeaders sets the common required headers to complete a request the confluence server
 func setHeaders(req *http.Request) {
 	req.Header.Add("X-Atlassian-Token", "no-check")
@@ -346,12 +366,16 @@ func setHeaders(req *http.Request) {
 
 // setAuthHeader sets the appropriate header and value depending on the available credentials
 func setAuthHeader(req *http.Request) {
-	if personalAccessToken != "" {
-		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", personalAccessToken))
+	if isCloud() {
+		req.Header.Add("Authorization",
+			fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(atlassianEmail+":"+atlassianAPIToken))))
 	} else {
-		data := []byte(userName + ":" + password)
-		encoded := base64.StdEncoding.EncodeToString(data)
-		req.Header.Add("Authorization", fmt.Sprintf("Basic %s", encoded))
+		if personalAccessToken != "" {
+			req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", personalAccessToken))
+		} else {
+			req.Header.Add("Authorization",
+				fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(userName+":"+password))))
+		}
 	}
 }
 
@@ -367,4 +391,9 @@ func checkResponse(resp *http.Response) {
 		fmt.Printf("response returned %d, with body: %s ", resp.StatusCode, string(b))
 		os.Exit(1)
 	}
+}
+
+// isCloud returns true when cloud creds are set
+func isCloud() bool {
+	return atlassianAPIToken != "" && atlassianEmail != ""
 }
