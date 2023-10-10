@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/brianvoe/gofakeit/v6"
 	retryablehttp "github.com/hashicorp/go-retryablehttp"
@@ -395,5 +396,5 @@ func checkResponse(resp *http.Response) {
 
 // isCloud returns true when cloud creds are set
 func isCloud() bool {
-	return atlassianAPIToken != "" && atlassianEmail != ""
+	return strings.Contains(confluenceInstanceURL, "atlassian.net")
 }
