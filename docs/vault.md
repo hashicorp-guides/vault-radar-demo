@@ -71,3 +71,19 @@ vault-radar scan-confluence -outfile=confluence.csv -url="http://localhost:8090"
 
 An in-memory index keyed off of secret hashes will be generated prior to scanning the source. This index will be used to
 annotate whether a risk exists in Vault.
+
+### HCP Vault considerations
+
+In a HCP Vault cluster, the root namespace is restricted and the users will only have access to `admin` namespace and all the child namespaces within it.
+For `scan-vault` command to work against a HCP Vault cluster, it is mandatory to set `VAULT_PARENT_NAMESPACE` environment variable to the namespace
+that needs to be scanned.
+
+```bash
+export VAULT_PARENT_NAMESPACE=admin
+vault-radar scan-vault -outfile vault-scan.csv -rotation-period=90
+```
+
+The above command will scan all the namespaces within the `admin`, including the `admin` namespace.
+
+
+Note: The `VAULT_PARENT_NAMESPACE` will also work on Vault Enterprise but not mandatory
