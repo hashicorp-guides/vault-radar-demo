@@ -309,7 +309,7 @@ func updatePage(ctx context.Context, pageID string, v int, secretProvider *secre
 	if isCloud() {
 		url = url + "/wiki"
 	}
-	url = url + "/rest/api/content" + "/" + pageID
+	url = url + "/rest/api/content/" + pageID
 
 	var secret string
 	r := rand.Intn(secretSprinkleRatio)
