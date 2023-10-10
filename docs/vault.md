@@ -86,4 +86,4 @@ vault-radar scan-vault -outfile vault-scan.csv -rotation-period=90
 The above command will scan all the namespaces within the `admin`, including the `admin` namespace.
 
 
-Note: The `VAULT_PARENT_NAMESPACE` will also work on Vault Enterprise but not mandatory
+Note: The `VAULT_PARENT_NAMESPACE` will also work on Vault Enterprise but it is not mandatory to set.
