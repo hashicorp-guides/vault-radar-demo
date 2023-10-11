@@ -10,6 +10,6 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 
 * [`scan-confluence` - Atlassian Confluence integration documentation](confluence.md)
 * [`scan-repo` - git integration documentation](git.md)
-* [`scan-aws-s3` - AWS S3 integration documentation](aws-parameter-store.md)
+* [`scan-aws-s3` - AWS S3 integration documentation](aws-s3.md)
 * [`scan-aws-parameter-store` - AWS Parameter Store integration documentation](aws-parameter-store.md)
 * [`scan-vault` - HashiCorp Vault integration documentation](vault.md)
