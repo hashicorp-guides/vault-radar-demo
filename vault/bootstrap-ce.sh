@@ -88,13 +88,13 @@ sudo date -s '-92 days'
 restart_vault "$unseal_key"
 
 # Store AWS credentials
-aws_access_key_id1=$(yq -r '... comments="" | .samples.aws.[0].aws_access_key_id' ../secrets.yaml)
-aws_secret_key1=$(yq -r '... comments="" | .samples.aws.[0].aws_secret_key' ../secrets.yaml)
+aws_access_key_id1=$(yq -r '... comments="" | .samples.aws.[0].aws_access_key_id' "$DIR/../sample/secrets.yaml")
+aws_secret_key1=$(yq -r '... comments="" | .samples.aws.[0].aws_secret_key' "$DIR/../sample/secrets.yaml")
 
 vault_cmd kv put team1/aws aws_access_key_id="$aws_access_key_id1" aws_secret_key="$aws_secret_key1"
 
-aws_access_key_id2=$(yq -r '... comments="" | .samples.aws.[1].aws_access_key_id' ../secrets.yaml)
-aws_secret_key2=$(yq -r '... comments="" | .samples.aws.[1].aws_secret_key' ../secrets.yaml)
+aws_access_key_id2=$(yq -r '... comments="" | .samples.aws.[1].aws_access_key_id' "$DIR/../sample/secrets.yaml")
+aws_secret_key2=$(yq -r '... comments="" | .samples.aws.[1].aws_secret_key' "$DIR/../sample/secrets.yaml")
 
 # Create AppRole secret IDs for team1 and team2
 vault write -force auth/team1-app/role/foo/secret-id
@@ -106,8 +106,8 @@ restart_vault "$unseal_key"
 
 vault_cmd kv put team2/aws aws_access_key_id="$aws_access_key_id2" aws_secret_key="$aws_secret_key2"
 
-aws_access_key_id3=$(yq -r '... comments="" | .samples.aws.[2].aws_access_key_id' ../secrets.yaml)
-aws_secret_key3=$(yq -r '... comments="" | .samples.aws.[2].aws_secret_key' ../secrets.yaml)
+aws_access_key_id3=$(yq -r '... comments="" | .samples.aws.[2].aws_access_key_id' "$DIR/../sample/secrets.yaml")
+aws_secret_key3=$(yq -r '... comments="" | .samples.aws.[2].aws_secret_key' "$DIR/../sample/secrets.yaml")
 
 # Create AppRole secret ID for team3
 vault write -force auth/team3-app/role/baz/secret-id
@@ -125,9 +125,9 @@ sudo date -s '+72 days'
 restart_vault "$unseal_key"
 
 # Store GitHub personal access tokens
-vault_cmd kv put team1/github pat="$(yq -r '... comments="" | .samples.github_pats[0]' < ../secrets.yaml)"
-vault_cmd kv put team2/github pat="$(yq -r '... comments="" | .samples.github_pats[1]' < ../secrets.yaml)"
-vault_cmd kv put team3/github pat="$(yq -r '... comments="" | .samples.github_pats[2]' < ../secrets.yaml)"
+vault_cmd kv put team1/github pat="$(yq -r '... comments="" | .samples.github_pats[0]' < "$DIR/../sample/secrets.yaml")"
+vault_cmd kv put team2/github pat="$(yq -r '... comments="" | .samples.github_pats[1]' < "$DIR/../sample/secrets.yaml")"
+vault_cmd kv put team3/github pat="$(yq -r '... comments="" | .samples.github_pats[2]' < "$DIR/../sample/secrets.yaml")"
 
 # Create AppRole secret ID for team4
 vault write -force auth/team4-app/role/quux/secret-id
