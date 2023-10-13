@@ -44,6 +44,15 @@ Warnings will also be provided if a secret is close to exceeding its expiry peri
 its number of uses (currently specific to AppRole) is close to 0. Entries with multiple warnings will have a severity of
 `high`.
 
+The breadth of a scan can be limited and filtered in multiple ways. Most simply, the `-limit` flag can be used to specify
+a maximum number of secrets to scan. There are no ordering guarantees with this flag, however, so it is mostly useful to
+capture a quick subset of data as a means to fully understand the output's structure. The output can also be filtered
+more directly using one or more of the following flags:
+
+- `-namespace`: Only secrets within this namespace will be present in this namespace. Example: `vault-radar scan-vault -namespace=ns1 ...`
+- `-mount-type`: Only secrets within mounts of this type will be present in the output. This flag is namespace and path agnostic. Example: `vault-radar scan-vault -mount-type=approle ...`
+- `-mount-path:` Only secrets within mounts of this _relative_ path will be present in the output. This flag is namespace and mount-type agnostic. Example: `vault-radar scan-vault -mount-path=app1 ...`
+
 ## Index Generation
 You can generate an index of KVv2 secrets from Vault using the `scan-vault` command in index mode:
 
