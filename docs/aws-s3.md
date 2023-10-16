@@ -26,6 +26,14 @@ To scan all objects within a bucket and write the results in [JSON Lines](https:
 vault-radar scan-aws-s3 --bucket <BUCKET NAME> -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl -f json
 ```
 
+### Scan all objects in a bucket with prefix
+
+To scan all objects within a bucket beginning with a prefix
+
+```bash
+vault-radar scan-aws-s3 --bucket <BUCKET NAME> -r <REGION CODE> --prefix <PREFIX> -o <PATH TO OUTPUT>.jsonl -f json
+```
+
 ### Scanning using a baseline file
 
 Perform a scan using a previous scan's result and write the new changes to an outfile.
