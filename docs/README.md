@@ -14,3 +14,7 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 * [`scan-aws-parameter-store` - AWS Parameter Store integration documentation](aws-parameter-store.md)
 * [`scan-vault` - HashiCorp Vault integration documentation](vault.md)
 * [`scan-folder` - scan-folder documentation](folder.md)
+
+## Misc
+
+* [combine multiple scan results](combine-multiple-scan-results.md) 
