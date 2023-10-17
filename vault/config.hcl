@@ -1,3 +1,5 @@
+# Copyright (c) HashiCorp, Inc.
+
 storage "raft" {
   path    = "/vault/file"
   node_id = "vault_1"

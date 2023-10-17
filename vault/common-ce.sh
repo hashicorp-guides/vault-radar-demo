@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) HashiCorp, Inc.
+
 
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
