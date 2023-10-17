@@ -1,8 +1,5 @@
 # Copyright (c) HashiCorp, Inc.
-<<<<<<< Updated upstream
-=======
 # SPDX-License-Identifier: MPL-2.0
->>>>>>> Stashed changes
 
 storage "raft" {
   path    = "/vault/file"

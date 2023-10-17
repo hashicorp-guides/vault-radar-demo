@@ -1,10 +1,6 @@
 #!/bin/bash
 # Copyright (c) HashiCorp, Inc.
-<<<<<<< Updated upstream
-=======
 # SPDX-License-Identifier: MPL-2.0
->>>>>>> Stashed changes
-
 
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
