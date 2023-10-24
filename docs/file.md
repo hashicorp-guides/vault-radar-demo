@@ -29,7 +29,7 @@ Scan data coming from stdin.
 and it will be used in secret URI in the output file 
 
 ```bash
-vault-radar scan-file -o <PATH TO OUTPUT>.csv --name <NAME> 
+echo "password abcABC123" | vault-radar scan-file -o <PATH TO OUTPUT>.csv --name <NAME> 
 ```
 
 ### Scanning using a baseline file
@@ -55,6 +55,6 @@ vault-radar scan-file -p <PATH TO FILE> -o <PATH TO OUTPUT>.csv --index-file <PA
 Scan a clone and write the results to an outfile and stop scanning when the defined number of secrets are found
 
 ```bash
-vault-radar scan-file -p <PATH TO FOLDER> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
+vault-radar scan-file -p <PATH TO FILE> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
 ```
 
