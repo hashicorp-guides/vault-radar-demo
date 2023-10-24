@@ -43,7 +43,7 @@ resource "aws_ssm_parameter" "vault_token" {
 resource "aws_ssm_parameter" "slack_secret_list" {
   name  = "/slack/secret/list"
   type  = "StringList"
-  value = "xoxb-not-a-real-bot-token,xoxp-not-a-real-personal-token"
+  value = join(",", [local.yaml_secrets.samples.slack_secrets[0], local.yaml_secrets.samples.slack_secrets[0],])
 }
 
 // Secure string for indexing

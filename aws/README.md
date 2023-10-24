@@ -17,3 +17,6 @@ terraform init
 terraform apply
 ```
 
+To delete your test secrets run:
+
+`terraform destroy`
