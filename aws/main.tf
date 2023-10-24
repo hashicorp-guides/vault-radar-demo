@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  yaml_secrets= yamldecode(file("../secrets.yaml"))
+  yaml_secrets = yamldecode(file("../secrets.yaml"))
 }
 
 # Configure the AWS Provider
@@ -43,7 +43,7 @@ resource "aws_ssm_parameter" "vault_token" {
 resource "aws_ssm_parameter" "slack_secret_list" {
   name  = "/slack/secret/list"
   type  = "StringList"
-  value = join(",", [local.yaml_secrets.samples.slack_secrets[0], local.yaml_secrets.samples.slack_secrets[0],])
+  value = join(",", [local.yaml_secrets.samples.slack_secrets[0], local.yaml_secrets.samples.slack_secrets[0], ])
 }
 
 resource "aws_ssm_parameter" "not_a_secret" {
