@@ -46,6 +46,12 @@ resource "aws_ssm_parameter" "slack_secret_list" {
   value = join(",", [local.yaml_secrets.samples.slack_secrets[0], local.yaml_secrets.samples.slack_secrets[0],])
 }
 
+resource "aws_ssm_parameter" "not_a_secret" {
+  name  = "/not/a/secret"
+  type  = "String"
+  value = "test value"
+}
+
 // Secure string for indexing
 resource "aws_ssm_parameter" "secure_string_example" {
   name  = "/foo/string/secure"
