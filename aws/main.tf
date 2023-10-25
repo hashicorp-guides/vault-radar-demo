@@ -23,16 +23,10 @@ resource "aws_ssm_parameter" "github_pat" {
   value = local.yaml_secrets.samples.github_pats[0]
 }
 
-resource "aws_ssm_parameter" "aws_access_key_id" {
-  name  = join("/", [local.name_prefix, "key/id", ])
+resource "aws_ssm_parameter" "aws_secret_creds" {
+  name  = join("/", [local.name_prefix, "secret/creds", ])
   type  = "String"
-  value = local.yaml_secrets.samples.aws[0].aws_access_key_id
-}
-
-resource "aws_ssm_parameter" "aws_secret_key" {
-  name  = join("/", [local.name_prefix, "secret/key", ])
-  type  = "String"
-  value = local.yaml_secrets.samples.aws[0].aws_secret_key
+  value = "aws_access_key_id=${local.yaml_secrets.samples.aws[0].aws_access_key_id} aws_secret_access_key=${local.yaml_secrets.samples.aws[0].aws_secret_key}"
 }
 
 resource "aws_ssm_parameter" "vault_token" {
