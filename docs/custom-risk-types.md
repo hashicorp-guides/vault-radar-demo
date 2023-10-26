@@ -18,7 +18,7 @@ description: GitLab personal access token
 precedence: strong_pattern
 ```
 
-Field Descriptions:
+### Field Descriptions
 
 - **value**: specifies a regular expression to match the risk. Vault Radar supports golang stype regular expressions as well as PCRE
 - **type**: unique identifier for the risk type
@@ -26,6 +26,30 @@ Field Descriptions:
 - **description**: Human friendly description of the risk type.
 - **presence**: This is internal to Vault Radar, use `strong_pattern` for all custom risk types.
 
-More examples:
+## Location
 
-Non-Inclusive Language
+CLI loads .yaml files from `$HOME/.hashicorp/value-radar/custom_patterns` folder. 
+
+## Examples
+
+### Non-Inclusive Language
+
+```yaml
+regex:
+  value: (?i)whitelist
+type: nil_whitelist
+category: nil
+description: Non-inclusive Language - Whitelist
+precedence: strong_pattern
+```
+
+### PII
+
+```yaml
+regex:
+  value: \b((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\b
+type: pii_ipv4
+category: pii
+description: PII - IPv4
+precedence: strong_pattern
+```
