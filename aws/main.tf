@@ -43,7 +43,7 @@ resource "aws_ssm_parameter" "vault_token" {
 
 // Gitlab Pat Tokens
 resource "aws_ssm_parameter" "gitlab_pats" {
-  name  = join("/", [local.name_prefix, "gitlab/pats${count.index + 1}", ])
+  name  = join("/", [local.name_prefix, "gitlab/pat-${count.index + 1}", ])
   type  = "String"
   count = 2
   value = local.yaml_secrets.samples.gitlab_pats[count.index]
