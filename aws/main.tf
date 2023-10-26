@@ -9,7 +9,7 @@ terraform {
 
 locals {
   yaml_secrets = yamldecode(file("../secrets.yaml"))
-  name_prefix = "/demo"
+  name_prefix  = "/demo"
 }
 
 # Configure the AWS Provider
