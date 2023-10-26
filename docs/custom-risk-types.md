@@ -21,10 +21,11 @@ precedence: strong_pattern
 ### Field Descriptions
 
 - **value**: specifies a regular expression to match the risk. Vault Radar supports golang stype regular expressions as well as PCRE
-- **type**: unique identifier for the risk type
+- **type**: unique identifier for the risk type. While there are no restrictions on the actual value, 
+the best practice is to keep it to lower-case letters and underscore only. 
 - **category**: risk category. Must be one of `secret`, `pii`, or `nil` 
 - **description**: Human friendly description of the risk type.
-- **presence**: This is internal to Vault Radar, use `strong_pattern` for all custom risk types.
+- **precedence**: This is internal to Vault Radar, use `strong_pattern` for all custom risk types.
 
 ## Location
 
