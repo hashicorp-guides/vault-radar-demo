@@ -19,7 +19,7 @@ provider "aws" {
 
 // Github Pat Tokens
 resource "aws_ssm_parameter" "github_pat" {
-  name  = join("/", [local.name_prefix, "github/pat${count.index + 1}", ])
+  name  = join("/", [local.name_prefix, "github/pat-${count.index + 1}", ])
   type  = "String"
   count = 2
   value = local.yaml_secrets.samples.github_pats[count.index]
