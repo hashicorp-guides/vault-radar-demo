@@ -1,7 +1,7 @@
 # Custom Risk Types
 
 It is possible to define a custom risk type that CLI will recognize.
-It can be a secret, e.g. an API token, a PII (Personal Identifying Information), or NIL (Non-Inclusive Language)
+It can be a secret (e.g. an API token), a PII (Personal Identifying Information), or NIL (Non-Inclusive Language)
 
 ## File Format
 
