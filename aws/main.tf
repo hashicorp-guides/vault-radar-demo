@@ -21,23 +21,23 @@ provider "aws" {
 resource "aws_ssm_parameter" "github_pat" {
   name  = join("/", [local.name_prefix, "github/pat-${count.index + 1}", ])
   type  = "String"
-  count = 2
+  count = length(local.yaml_secrets.samples.github_pats)
   value = local.yaml_secrets.samples.github_pats[count.index]
 }
 
 // AWS Creds
 resource "aws_ssm_parameter" "aws_secret_creds" {
-  name  = join("/", [local.name_prefix, "secret/creds${count.index + 1}", ])
+  name  = join("/", [local.name_prefix, "secret/creds-${count.index + 1}", ])
   type  = "String"
-  count = 3
+  count = length(local.yaml_secrets.samples.aws)
   value = "aws_access_key_id=${local.yaml_secrets.samples.aws[count.index].aws_access_key_id} aws_secret_access_key=${local.yaml_secrets.samples.aws[count.index].aws_secret_key}"
 }
 
 // Vault Tokens
 resource "aws_ssm_parameter" "vault_token" {
-  name  = join("/", [local.name_prefix, "vault/token${count.index + 1}", ])
+  name  = join("/", [local.name_prefix, "vault/token-${count.index + 1}", ])
   type  = "String"
-  count = 2
+  count = length(local.yaml_secrets.samples.vault_token)
   value = local.yaml_secrets.samples.vault_token[count.index]
 }
 
@@ -45,7 +45,7 @@ resource "aws_ssm_parameter" "vault_token" {
 resource "aws_ssm_parameter" "gitlab_pats" {
   name  = join("/", [local.name_prefix, "gitlab/pat-${count.index + 1}", ])
   type  = "String"
-  count = 2
+  count = length(local.yaml_secrets.samples.gitlab_pats)
   value = local.yaml_secrets.samples.gitlab_pats[count.index]
 }
 
