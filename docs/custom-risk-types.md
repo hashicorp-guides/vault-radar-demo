@@ -28,7 +28,7 @@ precedence: strong_pattern
 
 ## Location
 
-CLI loads .yaml files from `$HOME/.hashicorp/value-radar/custom_patterns` folder. 
+CLI loads .yaml files from `$HOME/.hashicorp/vault-radar/custom_patterns` folder. 
 
 ## Examples
 
