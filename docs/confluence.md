@@ -49,7 +49,7 @@ vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -b <PATH TO BASELIN
 ### Scanning using a Vault index file
 perform a scan using a generated vault index and write the results to an outfile
 ```bash
-vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -i <PATH TO VAULT INDEX>.jsonl -o <PATH TO OUTPUT>.csv
+vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> --index-file <PATH TO VAULT INDEX>.jsonl -o <PATH TO OUTPUT>.csv
 ```
 TODO - Link to generating a Vault Index
 ### Scan and restrict the number of secrets found
