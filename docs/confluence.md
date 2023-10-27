@@ -51,11 +51,17 @@ perform a scan using a generated vault index and write the results to an outfile
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> --index-file <PATH TO VAULT INDEX>.jsonl -o <PATH TO OUTPUT>.csv
 ```
-TODO - Link to generating a Vault Index
+[How to generate a Vault Index](vault.md#index-generation)
 ### Scan and restrict the number of secrets found
 scan a space and write the results to an outfile and stop scanning when the defined number of secrets are found
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
+```
+
+### Scan the entire history of a space or page
+All versions of a page or space can be scanned by adding the flag `--with-history`, example:
+```bash
+vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -o <PATH TO OUTPUT>.csv --with-history
 ```
 
 ## Troubleshooting Help
