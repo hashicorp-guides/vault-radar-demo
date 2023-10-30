@@ -2,6 +2,7 @@
 This page aims to explain and define the various fields that will be present in the CSV output.
 
 ## Field Definitions
+The following are field definitions that can be present in any CSV output:
 
 | Field Name | Description |
 | --- | --- |
@@ -22,6 +23,7 @@ This page aims to explain and define the various fields that will be present in 
 | **Total Managed Locations**| This is populated only when scanning with an index file. This is the number of times a particular risk was found in secrets manager
 
 ## Data Source Specific Fields
+The following are field definitions for fields that will be present when scanning specific data sources.
 
 ### Github
 | Field Name | Description |
