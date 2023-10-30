@@ -10,7 +10,7 @@ This page aims to explain and define the various fields that will be present in 
 | **Created At**| This is the time the risk was created or introduced.
 | **Author**| This is the user associated with creating or introducing the risk.
 | **Severity**| This is a classification of the risk. **Critical** risks are things Vault Radar believe are the most deserving of user's immediate attention, followed by **High**, **Medium**, and **Info**.
-| **Is Historic**| This means the risk was first created or introduced in version that precedes the most recent version.
+| **Is Historic**| This means the risk was both, first created in version that precedes the most recent version and that the risk is not present in the most recent version of the content.
 | **Deep Link**| This is a link the content where the risk was found.
 | **Value Hash**| This is a hash of the secret value itself. This is NOT the value of the secret. Identical hashes, means the secret values are identical.
 | **Fingerprint**| This is a value that is used to distinguish different risk events and incorporates time and location into the value's generation. This is a value that is useful when depending on the output as part of some integration or automation.
