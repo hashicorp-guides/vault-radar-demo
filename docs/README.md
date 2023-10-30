@@ -18,5 +18,6 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 
 ## Misc
 
+* [Output Documentation](output.md)
 * [combine multiple scan results](combine-multiple-scan-results.md)
 * [Custom risk types](custom-risk-types.md) 
