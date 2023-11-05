@@ -41,7 +41,3 @@ Each entry is a regex, if the risk value matches the regex, it will be ignored.
 
 To skip risks particular types, add the rule to `secret_types` section.
 Each entry is a regex, if the risk value matches the regex, it will be ignored.
-
-
-
-
