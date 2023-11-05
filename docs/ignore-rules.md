@@ -34,10 +34,10 @@ Each entry can be a concrete file path or a glob mask.
 
 ### Skip by risk value
 
-To skip risks particular values, add the rule to `secret_values` section. 
+To skip particular values, add the rule to `secret_values` section. 
 Each entry is a regex, if the risk value matches the regex, it will be ignored. 
 
 ### Skip by risk type
 
-To skip risks particular types, add the rule to `secret_types` section.
+To skip particular types, add the rule to `secret_types` section.
 Each entry is a regex, if the risk value matches the regex, it will be ignored.
