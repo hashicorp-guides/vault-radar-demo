@@ -14,7 +14,7 @@ If you'd like additional scan types to be added, please reach out and give us th
 
 ### A quick intro/setting the scene
 
-`copy-secrets-to-vault` copies unmanaged secrets, discovered in a scan, to HashiCorp Vault. As a result, it needs to know which secrets are already vaulted.
+`copy-secrets-to-vault` copies unmanaged secrets, discovered in a scan, to HashiCorp Vault. As a result, it needs to know which secrets are already managed.
 
 It figures this out by looking at the outfile of a previous supported scan that used a Vault index file. For example, if you ran
 
@@ -22,7 +22,7 @@ It figures this out by looking at the outfile of a previous supported scan that 
 vault-radar scan-folder -o scan-folder-outfile --index-file vault-scan-outfile
 ```
 
-where `vault-scan-outfile` is the result of a `scan-vault`, this command would accept as input `scan-folder-outfile` to understand which secrets need to be vaulted.
+where `vault-scan-outfile` is the result of a `scan-vault`, this command would accept as input `scan-folder-outfile` to understand which secrets need to be managed.
 
 `copy-secrets-to-vault` will then re-run the previous scan (characterized by `scan-folder-outfile` in the above example), gather the unmanaged secrets, and Vault them.
 
@@ -52,7 +52,7 @@ To e.g. limit the above scan to 200 results:
 vault-radar copy-secrets-to-vault -p <PATH TO PREVIOUS SCAN OUTFILE> -o <PATH TO OUTPUT>.csv -v <LOCATION TO MOUNT A NEW VAULT KVv2> -l 200
 ```
 
-### Understanding where discovered secrets are Vaulted
+### Understanding where discovered secrets are placed in Vault
 Discovered secrets will be placed at `<provided vault mount from --vault-path>/data/copied`, where the `key` is the secret's fingerprint from the `vault-radar` scan, and the value is the raw secret value.
 
 The mapping of `<secret fingerprint>` to `<secret location in Vault>` will be output in the outfile at the location specified by `--outfile, -o`.
