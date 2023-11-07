@@ -56,3 +56,23 @@ vault-radar copy-secrets-to-vault -p <PATH TO PREVIOUS SCAN OUTFILE> -o <PATH TO
 Discovered secrets will be placed at `<provided vault mount from --vault-path>/data/copied`, where the `key` is the secret's fingerprint from the `vault-radar` scan, and the value is the raw secret value.
 
 The mapping of `<secret fingerprint>` to `<secret location in Vault>` will be output in the outfile at the location specified by `--outfile, -o`.
+
+### Example: copy secrets found in `scan-folder` to Vault
+
+First, we'll run `scan-vault` to understand what secrets are already managed (in Vault). We'll specify that we want to generate an index file, and we'll generate our outfile as `scan-vault-outfile`.
+
+```bash
+vault-radar scan-vault -o scan-vault-outfile --index
+```
+
+Next, we'll run `scan-folder` to discover leaked secrets in the current directory. We'll provide the index file from the previous `scan-vault` step so that this scan has context on already managed secrets, and we'll specify our outfile as `scan-folder-outfile`.
+
+```bash
+vault-radar scan-folder -o scan-folder-outfile --index-file scan-vault-outfile
+```
+
+Finally, we'll run `copy-secrets-to-vault` to copy over any secrets found in the previous `scan-folder` step, except for those already managed in Vault. We'll provide `scan-vault-outfile` so that this command can understand which secrets discovered in `scan-folder` are already managed in `vault` (so that we avoid copying those over). We'll copy the unmanaged secrets to a new KVv2 mount at `path/to/test`, and we'll generate our outfile as `copy-secrets-to-vault-outfile`. This outfile allows us to know where previously unmanaged secrets were placed in Vault.
+
+```bash
+vault-radar copy-secrets-to-vault -p scan-vault-outfile -o copy-secrets-to-vault-outfile -v path/to/test
+```
