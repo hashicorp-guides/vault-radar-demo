@@ -1,4 +1,4 @@
-# `copy-secrets-to-vault`
+# `copy-secrets-to-vault` (experimental)
 This `vault-radar` command is used for copying unmanaged secrets discovered in a supported scan into HashiCorp Vault.
 
 ## Usage
