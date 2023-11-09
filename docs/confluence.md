@@ -26,12 +26,12 @@ All versions of Confluence server supports authorization using the Username (not
 
 ## Usage
 The following examples all assume you have already set the appropriate environment variable or that you intend to include them as part of the command you run.
-### Scaning a page
+### Scanning a page
 scan a page and write the results to an outfile in CSV format, this is the default format for output
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -p <PAGE ID> -o <PATH TO OUTPUT>.csv
 ```
-### Scaning a page and output JSON
+### Scanning a page and output JSON
 scan a page and write the results to an outfile in JSON format
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -p <PAGE ID> -o <PATH TO OUTPUT>.json -f json
@@ -58,7 +58,7 @@ scan a space and write the results to an outfile and stop scanning when the defi
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
 ```
 
-### Scan the entire history of a space or page
+### Scan the entire history of a space or page (experimental)
 All versions of a page or space can be scanned by adding the flag `--with-history`, example:
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -o <PATH TO OUTPUT>.csv --with-history
