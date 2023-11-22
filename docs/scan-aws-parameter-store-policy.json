@@ -6,7 +6,9 @@
             "Action": [
                 "ssm:DescribeParameters",
                 "ssm:GetParameterHistory",
-                "ssm:GetParameter"
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:ListTagsForResource"
             ],
             "Resource": "*"
         }

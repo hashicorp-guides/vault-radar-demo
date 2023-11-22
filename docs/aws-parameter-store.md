@@ -5,7 +5,7 @@ Note that we do not scan parameters of type `SecureString` as they are secure by
 
 ## Authentication
 
-`scan-aws-parameter-store` needs permissions to read the parameter and its history, 
+`scan-aws-parameter-store` needs permissions to read the parameter, its history and tags, 
 see this simplified [policy document](./scan-aws-parameter-store-policy.json).
 Refer [AWS authentication document](./aws-authentication.md) for various ways to set up the auth.
 
