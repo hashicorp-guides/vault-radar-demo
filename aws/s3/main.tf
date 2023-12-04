@@ -12,6 +12,11 @@ provider "aws" {
   region = "us-east-2"
 }
 
+locals {
+  folder_prefix  = "test"
+  folder_prefix2 = "test2"
+}
+
 // Create a generic bucket
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "my-demo-scan-bucket"
@@ -29,41 +34,27 @@ resource "aws_s3_object" "gitlab_object" {
   source = "secret-files/gitlab-pats.yaml"
 }
 
-// Creating a few directories
-resource "aws_s3_object" "folder" {
-  bucket = aws_s3_bucket.demo_bucket.id
-  key    = "test/"
-  source = "/dev/null"
-  // ToDo: Add windows
-}
-
 resource "aws_s3_object" "aws_object" {
   bucket = aws_s3_bucket.demo_bucket.id
-  key    = join("", [aws_s3_object.folder.key, "aws_token", ])
+  key    = join("/", [local.folder_prefix, "aws_token", ])
   source = "secret-files/aws-token.yaml"
 }
 
 resource "aws_s3_object" "azure_object" {
   bucket = aws_s3_bucket.demo_bucket.id
-  key    = join("", [aws_s3_object.folder.key, "azure_secret", ])
+  key    = join("/", [local.folder_prefix, "azure_secret", ])
   source = "secret-files/azure-secret.yaml"
-}
-
-resource "aws_s3_object" "folder2" {
-  bucket = aws_s3_bucket.demo_bucket.id
-  key    = "test2/"
-  source = "/dev/null"
 }
 
 resource "aws_s3_object" "slack_object" {
   bucket = aws_s3_bucket.demo_bucket.id
-  key    = join("", [aws_s3_object.folder2.key, "slack_secret", ])
+  key    = join("/", [local.folder_prefix2, "slack_secret", ])
   source = "secret-files/slack-secrets.yaml"
 }
 
 
 resource "aws_s3_object" "vault_object" {
   bucket = aws_s3_bucket.demo_bucket.id
-  key    = join("", [aws_s3_object.folder2.key, "vault_token", ])
+  key    = join("/", [local.folder_prefix2, "vault_token", ])
   source = "secret-files/vault-token.yaml"
 }
