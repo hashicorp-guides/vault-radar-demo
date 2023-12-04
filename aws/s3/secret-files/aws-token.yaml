@@ -1,0 +1,8 @@
+aws:
+  # Inactive
+  - aws_access_key_id: AKIAE2647DD83A384175
+    aws_secret_key:  g4fEPvwN2+2kT8omL4ieFqgVj4xLWx40PxNmOJ3S
+  - aws_access_key_id: AKIAFCF23A5A07754AB2
+    aws_secret_key: zd7NWMl7sg51aKll+j//L7gKWQh1zxq3tDeFYo2
+  - aws_access_key_id: AKIADE1C9C6F7B9F45D3
+    aws_secret_key: PvL4FjrrSXyT7qrllCS42SoNFbNI1c5NBJNqi8In

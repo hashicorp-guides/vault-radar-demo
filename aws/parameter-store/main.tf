@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  yaml_secrets = yamldecode(file("../secrets.yaml"))
+  yaml_secrets = yamldecode(file("../../secrets.yaml"))
   name_prefix  = "/demo"
 }
 
