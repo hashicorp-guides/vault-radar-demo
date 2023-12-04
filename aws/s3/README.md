@@ -2,7 +2,7 @@
 
 ## Seeding S3 Sample Data
 
-This guide assumes you have Terraform installed.
+This guide assumes you have Terraform installed (Terraform >=0.13).
 
 Set the following AWS environment variables:
 
