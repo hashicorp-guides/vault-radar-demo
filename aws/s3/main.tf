@@ -17,9 +17,15 @@ locals {
   folder_prefix2 = "test2"
 }
 
+resource "random_string" "random_prefix" {
+  length = 8
+  special = false
+  upper = false
+}
+
 // Create a generic bucket
 resource "aws_s3_bucket" "demo_bucket" {
-  bucket = "my-demo-scan-bucket"
+  bucket = join("-", [random_string.random_prefix.result, "my-demo-scan-bucket", ])
 }
 
 resource "aws_s3_object" "github_object" {
