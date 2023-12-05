@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  yaml_secrets = yamldecode(file("../secrets.yaml"))
+  yaml_secrets = yamldecode(file("../../secrets.yaml"))
   name_prefix  = "/demo"
 }
 
@@ -68,4 +68,15 @@ resource "aws_ssm_parameter" "secure_string_example" {
   name  = join("/", [local.name_prefix, "foo/string/secure", ])
   type  = "SecureString"
   value = "bar"
+}
+
+// Creating a dynamic private key
+resource "tls_private_key" "ed25519_example" {
+  algorithm = "ED25519"
+}
+
+resource "aws_ssm_parameter" "private_key" {
+  name  = join("/", [local.name_prefix, "private/key", ])
+  type  = "String"
+  value = tls_private_key.ed25519_example.private_key_pem
 }
