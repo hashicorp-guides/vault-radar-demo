@@ -58,9 +58,24 @@ resource "aws_s3_object" "slack_object" {
   source = "secret-files/slack-secrets.yaml"
 }
 
-
 resource "aws_s3_object" "vault_object" {
   bucket = aws_s3_bucket.demo_bucket.id
   key    = join("/", [local.folder_prefix2, "vault_token", ])
   source = "secret-files/vault-token.yaml"
+}
+
+// Creating a dynamic private key
+resource "tls_private_key" "ed25519-example" {
+  algorithm = "ED25519"
+}
+
+resource "local_file" "private_key" {
+  content  = tls_private_key.ed25519-example.private_key_pem
+  filename = "secret-files/example.pem"
+}
+
+resource "aws_s3_object" "private_key_object" {
+  bucket = aws_s3_bucket.demo_bucket.id
+  key    = "private_key"
+  source = local_file.private_key.filename
 }
