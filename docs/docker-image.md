@@ -5,7 +5,11 @@ This `vault-radar` command is used for scanning a docker image
 
 ### Scanning a docker image
 
-Scan a public docker image (or a private image that is already pulled/dowloaded locally) and write the results to a file in CSV format, this is the default format for output. Image reference may optionally include a tag.[Docker engine](https://docs.docker.com/engine/install/) is a pre-requisite for scanning docker images using vault-radar.
+Scan a public docker image (or a private image that is already pulled/dowloaded locally) and write the results to a file in CSV format, this is the default format for output. 
+
+Image reference may optionally include a tag. We will scan the latest tag if no tag is specified.
+
+[Docker engine](https://docs.docker.com/engine/install/) is a pre-requisite for scanning docker images using vault-radar.
 
 ```bash
 vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv
@@ -18,7 +22,7 @@ To scan a private docker image, specify the following environment variables to a
 2. `DOCKER_REGISTRY_PASSWORD`
 
 ```bash
-vault-radar scan-docker-image -i <IMAGE REFERENCE> -f json -o <PATH TO OUTPUT>.csv
+vault-radar scan-docker-image -i <IMAGE REFERENCE> -f json -o <PATH TO OUTPUT>.json
 ```
 
 Example:
