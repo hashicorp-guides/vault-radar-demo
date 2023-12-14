@@ -22,14 +22,14 @@ To scan a private docker image, specify the following environment variables to a
 2. `DOCKER_REGISTRY_PASSWORD`
 
 ```bash
-vault-radar scan-docker-image -i <IMAGE REFERENCE> -f json -o <PATH TO OUTPUT>.json
+vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv
 ```
 
 Example:
 ```bash
 export DOCKER_REGISTRY_USERNAME=<ARTIFICATORY_USERNAME>
 export DOCKER_REGISTRY_PASSWORD=<ARTIFACTORY_TOKEN>
-vault-radar scan-docker-image -i XXX.artifactory.XXX/YYY-image -f json -o results-docker-base-image.json
+vault-radar scan-docker-image -i XXX.artifactory.XXX/YYY-image -o results-docker-image.csv
 ```
 
 ### Scanning a docker image and output in JSON
@@ -46,7 +46,7 @@ Perform a scan using a generated vault index and write the results to an outfile
 In this mode, if a risk was previously found in Vault, the scan results will report the location in Vault as well.
 
 ```bash
-vault-radar scan-docker-image -p <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO VAULT INDEX>.jsonl
+vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO VAULT INDEX>.jsonl
 ```
 
 ### Scan and restrict the number of secrets found
@@ -54,5 +54,5 @@ vault-radar scan-docker-image -p <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv --ind
 Scan a clone and write the results to an outfile and stop scanning when the defined number of secrets are found
 
 ```bash
-vault-radar scan-docker-image -p <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
+vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
 ```
