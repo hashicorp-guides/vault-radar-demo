@@ -49,3 +49,8 @@ scan a project and write the results to an outfile and stop scanning when the de
 ```bash
 vault-radar scan-jira -u <INSTANCE URL> -p <PROJECT KEY> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
 ```
+### Scan and restrict the number of issues scanned
+scan a project and write the results to an outfile and stop scanning when the defined number of issues has been scanned
+```bash
+vault-radar scan-jira -u <INSTANCE URL> -p <PROJECT KEY> -o <PATH TO OUTPUT>.csv --issue-limit <NUM OF ISSUES>
+```
