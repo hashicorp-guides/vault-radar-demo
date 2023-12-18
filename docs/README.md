@@ -16,7 +16,7 @@ documentation](aws-parameter-store.md)
 * [`scan-docker-image` - Scan docker image documentation (experimental)](docker-image.md)
 * [`scan-folder` - scan-folder documentation](folder.md)
 * [`scan-file` - scan-file documentation](file.md)
-* [`scan-jira` - scan-jira documentation](jira.md)
+* [`scan-jira` - scan-jira documentation (experimantal)](jira.md)
 * [`scan-repo` - git integration documentation](git.md)
 * [`scan-vault` - HashiCorp Vault integration documentation](vault.md)
 
