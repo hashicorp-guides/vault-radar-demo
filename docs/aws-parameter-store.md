@@ -1,7 +1,7 @@
 # `scan-aws-parameter-store`
 
 This `vault-radar` command is used for scanning parameters of type `String` and `StringList` AWS Parameter Store.
-Note that we do not scan parameters of type `SecureString` as they are secure by definition.
+Note: Parameters of type `SecureString` can be indexed, but will not be scanned as they are secure by definition.
 
 ## Authentication
 
@@ -70,4 +70,18 @@ To stop scanning when the defined number of parameters are scanned
 
 ```bash
 vault-radar scan-aws-parameter-store -r <REGION CODE> -o <PATH TO OUTPUT>.csv --parameter-limit <NUM OF PARAMETERS>
+```
+
+### Generate an index file of parameters of type SecureString
+
+To generate an index file using the `SecureString` parameters
+
+```bash
+vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.csv
+```
+
+To consume the resulting index file use the `index-file` flag when calling a scan command. E.g.
+
+```bash
+vault-radar scan-aws-s3 --bucket <BUCKET NAME >-r <REGION CODE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO INDEX FILE>
 ```
