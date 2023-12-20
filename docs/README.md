@@ -10,8 +10,7 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 
 * [`copy-secrets-to-vault` - Copy found secrets to vault documentation (experimental)](copy-secrets-to-vault.md)
 * [`scan-aws-s3` - AWS S3 integration documentation](aws-s3.md)
-* [`scan-aws-parameter-store` - AWS Parameter Store integration 
-documentation](aws-parameter-store.md)
+* [`scan-aws-parameter-store` - AWS Parameter Store integration documentation](aws-parameter-store.md)
 * [`scan-confluence` - Atlassian Confluence integration documentation](confluence.md)
 * [`scan-docker-image` - Scan docker image documentation (experimental)](docker-image.md)
 * [`scan-folder` - scan-folder documentation](folder.md)
