@@ -83,5 +83,5 @@ vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.
 To consume the resulting index file use the `index-file` flag when calling a scan command. E.g.
 
 ```bash
-vault-radar scan-aws-s3 --bucket <BUCKET NAME >-r <REGION CODE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO INDEX FILE>
+vault-radar scan-aws-s3 --bucket <BUCKET NAME> -r <REGION CODE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO INDEX FILE>
 ```
