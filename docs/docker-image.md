@@ -51,7 +51,7 @@ vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv --ind
 
 ### Scan and restrict the number of secrets found
 
-Scan a clone and write the results to an outfile and stop scanning when the defined number of secrets are found
+Scan a docker image and and write the results to an outfile and stop scanning when the defined number of secrets are found
 
 ```bash
 vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>

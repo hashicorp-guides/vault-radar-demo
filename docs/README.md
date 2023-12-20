@@ -18,6 +18,7 @@ documentation](aws-parameter-store.md)
 * [`scan-file` - scan-file documentation](file.md)
 * [`scan-jira` - scan-jira documentation (experimantal)](jira.md)
 * [`scan-repo` - git integration documentation](git.md)
+* [`scan-tfe-variables` - TFC/TFE integration documentation](tfe-variables.md)
 * [`scan-vault` - HashiCorp Vault integration documentation](vault.md)
 
 ## Misc
