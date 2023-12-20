@@ -77,7 +77,7 @@ vault-radar scan-aws-parameter-store -r <REGION CODE> -o <PATH TO OUTPUT>.csv --
 To generate an index file using the `SecureString` parameters
 
 ```bash
-vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.csv
+vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl
 ```
 
 To consume the resulting index file use the `index-file` flag when calling a scan command. E.g.
