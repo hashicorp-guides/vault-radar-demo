@@ -9,7 +9,7 @@ Scan a public docker image (or a private image that is already pulled/dowloaded 
 
 Image reference may optionally include a tag. We will scan the latest tag if no tag is specified.
 
-[Docker engine](https://docs.docker.com/engine/install/) is a pre-requisite for scanning docker images using vault-radar.
+[Docker engine](https://docs.docker.com/engine/install/) is a pre-requisite for scanning docker images using vault-radar. Docker version 24 or greater is required.
 
 ```bash
 vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv
@@ -51,7 +51,7 @@ vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv --ind
 
 ### Scan and restrict the number of secrets found
 
-Scan a clone and write the results to an outfile and stop scanning when the defined number of secrets are found
+Scan a docker image and and write the results to an outfile and stop scanning when the defined number of secrets are found
 
 ```bash
 vault-radar scan-docker-image -i <IMAGE REFERENCE> -o <PATH TO OUTPUT>.csv -l <NUM OF SECRETS>
