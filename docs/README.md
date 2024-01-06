@@ -4,8 +4,8 @@ Welcome to the `vault-radar` documentation.
 
 ## Dependencies
 Following dependencies need to be installed on the machine `vault-radar` is running on.
- *  `git` CLI - Required for scan-repo command
- *  [Docker engine](https://docs.docker.com/engine/install/) - Required for scan-docker-image command 
+ *  `git` CLI - Required for `scan-repo` command
+ *  [Docker engine](https://docs.docker.com/engine/install/) - Required for `scan-docker-image` command 
 
 ## Commands
 To learn more about the various commands `vault-radar` supports, follow one of the links below:

@@ -1,9 +1,5 @@
 # `scan-tfe-variables` (experimental)
-This `vault-radar` command is used for scanning non-sensitive variables in a Terraform Cloud/Enterprise organization and identifying variable values that contain sensitive secrets
-
-Caveats of this experimental state: 
-- Scanning is limited to non-sensitive variables
-- Scanning variable sets is not supported yet
+This `vault-radar` command is used for scanning non-sensitive variables in a Terraform Cloud/Enterprise organization and identifying variable values that contain sensitive secrets. All non-sensitive variables defined in Variable sets and Workspaces are scanned. Both Terraform and Environment variables are scanned.
 
 ## Authentication
 `vault-radar` needs some authentication credentials in order to be able to make requests to TFC/TFE
