@@ -4,7 +4,7 @@ For commands that HCP upload is enabled you will need to go through the followin
 
 ## Creating your Service Principals
 
-You wil need to log into the HCP web portal to create your service principals. You can follow the HCP docs in order to create your [Project Service Principals](git@github.com:hashicorp-guides/vault-radar-demo.git). You will need to create the Service Principals at Admin level, more information about this level contained in [these](git@github.com:hashicorp-guides/vault-radar-demo.git) HCP docs.
+You wil need to log into the HCP web portal to create your service principals. You can follow the HCP docs in order to create your [Project Service Principals](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals#project-level-service-principals-1). You will need to create the Service Principals at Admin level, more information about this level contained in [these](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/users#project-role) HCP docs.
 
 Note: be sure to Copy the Client Secret on creation as you will be unable to retrieve it later.
 
