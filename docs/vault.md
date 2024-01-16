@@ -81,6 +81,13 @@ vault-radar scan-confluence -outfile=confluence.csv -url="http://localhost:8090"
 An in-memory index keyed off of secret hashes will be generated prior to scanning the source. This index will be used to
 annotate whether a risk exists in Vault.
 
+### HCP Upload Enabled index
+In order for an index file's values to properly match other scan sources the same salt is needed for hash generation. This requires getting this salt from the cloud. When generating an index that is intended to be used with an `--hcp-upload` scan you will need to use the  `--for-hcp-project` flag when generating an index.
+
+```bash
+vault-radar scan-vault -o vault-index.jsonl --index --for-hcp-project
+```
+
 ### HCP Vault considerations
 
 In a HCP Vault cluster, the root namespace is restricted and the users will only have access to `admin` namespace and all the child namespaces within it.

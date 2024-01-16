@@ -80,6 +80,14 @@ To generate an index file using the `SecureString` parameters
 vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl
 ```
 
+#### HCP Upload Enabled index
+In order for an index file's values to properly match other scan sources the same salt is needed for hash generation. This requires getting this salt from the cloud. When generating an index that is intended to be used with an `--hcp-upload` scan you will need to use the  `--for-hcp-project` flag when generating an index.
+
+```bash
+vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --for-hcp-project
+```
+
+### Consuming Index File for Scan
 To consume the resulting index file use the `index-file` flag when calling a scan command. E.g.
 
 ```bash
