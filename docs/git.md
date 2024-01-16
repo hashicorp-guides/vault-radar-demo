@@ -68,6 +68,13 @@ vault-radar scan-repo -u <REPO URL> -b <PATH TO BASELINE>.csv -o <PATH TO OUTPUT
 Note: it is expected that previous and current scans are "similar", 
 e.g. both either clone or repo scans, with or without history, etc.
 
+### HCP Upload of Scan Results
+To scan git repository and view the results on HCP UI, use the –hcp-upload flag
+
+```bash
+vault-radar scan-repo -c <PATH TO CLONE DIR> -o <PATH TO OUTPUT>.csv --index-file <PATH TO VAULT INDEX>.jsonl –hcp-upload
+```
+
 ### Scanning using a Vault index file
 
 Perform a scan using a generated vault index and write the results to an outfile. 
