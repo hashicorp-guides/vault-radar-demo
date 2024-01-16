@@ -27,4 +27,5 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 * [CSV Output Documentation](csv-output.md)
 * [Combine multiple scan results](combine-multiple-scan-results.md)
 * [Custom risk types](custom-risk-types.md) 
+* [HCP Upload Documentation](hcp-upload.md)
 * [Ignore rules](ignore-rules.md)

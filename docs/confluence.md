@@ -46,6 +46,12 @@ perform a scan using a previous scan's result and write the new changes to an ou
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> -b <PATH TO BASELINE> -o <PATH TO OUTPUT>.csv
 ```
+### HCP Upload of Scan Results
+To scan confluence and view the results on HCP UI, use the –hcp-upload flag
+
+```bash
+vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> --index-file <PATH TO VAULT INDEX>.jsonl -o <PATH TO OUTPUT>.csv –hcp-upload
+```
 ### Scanning using a Vault index file
 perform a scan using a generated vault index and write the results to an outfile
 ```bash
