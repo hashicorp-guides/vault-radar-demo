@@ -1,4 +1,4 @@
-# scan-vault
+# `scan-vault` (experimental)
 
 This `vault-radar` command is used for scanning a HashiCorp Vault Community Edition
 or Enterprise cluster. Scanning Vault using the `scan-vault` provides compliance reporting and secrets indexing

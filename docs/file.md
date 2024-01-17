@@ -1,4 +1,4 @@
-# `scan-file`
+# `scan-file` (experimental)
 
 This `vault-radar` command is used for scanning a file. 
 It is similar to [scan-folder](folder.md) command but can scan a single file. 

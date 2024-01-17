@@ -1,4 +1,4 @@
-# `scan-folder`
+# `scan-folder` (experimental)
 This `vault-radar` command is used for scanning a local folder.
 
 ## Usage
