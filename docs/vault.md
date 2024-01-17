@@ -81,6 +81,13 @@ vault-radar scan-confluence -outfile=confluence.csv -url="http://localhost:8090"
 An in-memory index keyed off of secret hashes will be generated prior to scanning the source. This index will be used to
 annotate whether a risk exists in Vault.
 
+### Generate an index file in offline mode
+Index files are generated in an "online mode" by default, meaning that the secret hash produced is using a salt that is provided from HCP. This requires the Project Service Principals to be configured for your system as outlined by the [HCP Upload Section](hcp-upload.md). If you do not want to use the index file for HCP upload and visualization you can use the `--offline` flag to use a local hashing salt and not error if the Service Principals are not configured.
+
+```bash
+vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --offline
+```
+
 ### HCP Vault considerations
 
 In a HCP Vault cluster, the root namespace is restricted and the users will only have access to `admin` namespace and all the child namespaces within it.
