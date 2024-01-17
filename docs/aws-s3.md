@@ -1,4 +1,4 @@
-# `scan-aws-s3`
+# `scan-aws-s3` (experimental)
 
 This `vault-radar` command is used for scanning an AWS S3 bucket.
 

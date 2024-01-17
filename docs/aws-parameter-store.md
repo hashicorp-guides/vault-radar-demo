@@ -1,4 +1,4 @@
-# `scan-aws-parameter-store`
+# `scan-aws-parameter-store` (experimental)
 
 This `vault-radar` command is used for scanning parameters of type `String` and `StringList` AWS Parameter Store.
 Note: Parameters of type `SecureString` can be indexed, but will not be scanned as they are secure by definition.
