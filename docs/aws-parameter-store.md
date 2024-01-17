@@ -79,7 +79,7 @@ Index files are generated in an "online mode" by default, meaning that the secre
 vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --offline
 ```
 
-#### Generating Parameters of type SecureString
+#### Generate index file using HCP provided salt
 To generate an index file using the `SecureString` parameters
 
 ```bash
