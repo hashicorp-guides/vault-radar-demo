@@ -1,4 +1,4 @@
-# `scan-aws-parameter-store`
+# `scan-aws-parameter-store` (experimental)
 
 This `vault-radar` command is used for scanning parameters of type `String` and `StringList` AWS Parameter Store.
 Note: Parameters of type `SecureString` can be indexed, but will not be scanned as they are secure by definition.
@@ -72,14 +72,21 @@ To stop scanning when the defined number of parameters are scanned
 vault-radar scan-aws-parameter-store -r <REGION CODE> -o <PATH TO OUTPUT>.csv --parameter-limit <NUM OF PARAMETERS>
 ```
 
-### Generate an index file of parameters of type SecureString
+### Generate an index file
+Index files are generated in an "online mode" by default, meaning that the secret hash produced is using a salt that is provided from HCP. This requires the Project Service Principals to be configured for your system as outlined by the [HCP Upload Section](hcp-upload.md). If you do not want to use the index file for HCP upload and visualization you can use the `--offline` flag to use a local hashing salt and not error if the Service Principals are not configured.
 
+```bash
+vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --offline
+```
+
+#### Generate index file using HCP provided salt
 To generate an index file using the `SecureString` parameters
 
 ```bash
 vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl
 ```
 
+### Consuming an index file
 To consume the resulting index file use the `index-file` flag when calling a scan command. E.g.
 
 ```bash
