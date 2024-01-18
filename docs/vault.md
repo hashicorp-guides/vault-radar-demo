@@ -75,7 +75,7 @@ The index can then be used to compare against in other scans. For example, the
 following command can be used to run a Confluence scan using a generated Vault index file:
 
 ```bash
-vault-radar scan-confluence -outfile=confluence.csv -url="http://localhost:8090" -space-key=VRD -index-file=vault.idx
+vault-radar scan-confluence --outfile=confluence.csv --url="http://localhost:8090" --space-key=VRD --index-file=vault.idx
 ```
 
 An in-memory index keyed off of secret hashes will be generated prior to scanning the source. This index will be used to
@@ -85,7 +85,7 @@ annotate whether a risk exists in Vault.
 Index files are generated in an "online mode" by default, meaning that the secret hash produced is using a salt that is provided from HCP. This requires the Project Service Principals to be configured for your system as outlined by the [HCP Upload Section](hcp-upload.md). If you do not want to use the index file for HCP upload and visualization you can use the `--offline` flag to use a local hashing salt and not error if the Service Principals are not configured.
 
 ```bash
-vault-radar scan-aws-parameter-store index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --offline
+vault-radar scan-vault --index -r <REGION CODE> -o <PATH TO OUTPUT>.jsonl --offline
 ```
 
 ### HCP Vault considerations
