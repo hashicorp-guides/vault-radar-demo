@@ -3,7 +3,7 @@ This `vault-radar` command is used for scanning Slack channel(s) and identifying
 
 ## Authentication
 `vault-radar` needs some authentication credentials in order to be able to make requests to Slack.
-Follow the steps below to generate a User oAuth token and specify the environment variable SLACK_USER_TOKEN to scan Slack channels. 
+Follow the steps below to generate a User OAuth token and specify the environment variable SLACK_USER_TOKEN to scan Slack channels. 
 
 * [Create a Slack app](https://api.slack.com/start/quickstart#creating)
 * [Request scopes](https://api.slack.com/start/quickstart#scopes) Within **OAuth & Permissions** section, scroll down to **Scopes** section.
