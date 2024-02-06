@@ -19,6 +19,7 @@ To learn more about the various commands `vault-radar` supports, follow one of t
 * [`scan-folder` - scan-folder documentation (experimental)](folder.md)
 * [`scan-file` - scan-file documentation (experimental)](file.md)
 * [`scan-jira` - scan-jira documentation (experimental)](jira.md)
+* [`scan-slack` - scan-slack documentation (experimental)](slack.md)
 * [`scan-tfe-variables` - TFC/TFE integration documentation (experimental)](tfe-variables.md)
 * [`scan-vault` - HashiCorp Vault integration documentation (experimental)](vault.md)
 
