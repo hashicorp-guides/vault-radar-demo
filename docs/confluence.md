@@ -52,6 +52,16 @@ To scan confluence and view the results on HCP UI, use the –hcp-upload flag
 ```bash
 vault-radar scan-confluence -u <INSTANCE URL> -s <SPACE KEY> --index-file <PATH TO VAULT INDEX>.jsonl -o <PATH TO OUTPUT>.csv –hcp-upload
 ```
+
+### HCP connection scanning behavior
+
+The default behavior of scan commands that have `hcp-upload` functionality is to require an HCP cloud connection to scan by default. This is to ensure that hashes are generated using a shared salt from the cloud keeping consistency across scans. In order to populate the HCP connection information needed you view the docs [here](hcp-upload.md).
+
+To allow for scanning to continue working without the need for HCP cloud connection you can use the new `--offline` flag as such.
+```bash
+vault-radar scan-confluence --offline -u <INSTANCE URL> -s <SPACE KEY> -o <PATH TO OUTPUT>.csv
+```
+
 ### Scanning using a Vault index file
 perform a scan using a generated vault index and write the results to an outfile
 ```bash
