@@ -53,6 +53,16 @@ more directly using one or more of the following flags:
 - `-mount-type`: Only secrets within mounts of this type will be present in the output. This flag is namespace and path agnostic. Example: `vault-radar scan-vault -mount-type=approle ...`
 - `-mount-path:` Only secrets within mounts of this _relative_ path will be present in the output. This flag is namespace and mount-type agnostic. Example: `vault-radar scan-vault -mount-path=app1 ...`
 
+### HCP connection scanning behavior
+
+The default behavior of scan commands is to require an HCP cloud connection to scan. This is to ensure that hashes are generated using a shared salt from the cloud keeping consistency across scans. In order to populate the HCP connection information needed you view the docs [here](hcp-upload.md).
+
+To allow for scanning to continue working without the need for HCP cloud connection you can use the new `--offline` flag as such.
+```bash
+vault-radar scan-vault --offline -o <PATH TO OUTPUT>.csv
+```
+
+
 ## Index Generation
 You can generate an index of KVv2 secrets from Vault using the `scan-vault` command in index mode:
 

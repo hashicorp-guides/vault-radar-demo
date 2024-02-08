@@ -47,6 +47,15 @@ Scan all accessible public and private channels and write the results to a file 
 vault-radar scan-slack -o <PATH TO OUTPUT>.jsonl -f json --offline
 ```
 
+### HCP connection scanning behavior
+
+The default behavior of scan commands is to require an HCP cloud connection to scan. This is to ensure that hashes are generated using a shared salt from the cloud keeping consistency across scans. In order to populate the HCP connection information needed you view the docs [here](hcp-upload.md).
+
+To allow for scanning to continue working without the need for HCP cloud connection you can use the new `--offline` flag as such.
+```bash
+vault-radar scan-slack --offline -o <PATH TO OUTPUT>.csv
+```
+
 ### Scanning using a Vault index file
 
 Perform a scan using a generated vault index and write the results to an outfile. 

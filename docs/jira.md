@@ -50,6 +50,16 @@ perform a scan using a previous scan's result and write the new changes to an ou
 ```bash
 vault-radar scan-jira -u <INSTANCE URL> -p <PROJECT KEY> -b <PATH TO BASELINE> -o <PATH TO OUTPUT>.csv
 ```
+
+### HCP connection scanning behavior
+
+The default behavior of scan commands is to require an HCP cloud connection to scan. This is to ensure that hashes are generated using a shared salt from the cloud keeping consistency across scans. In order to populate the HCP connection information needed you view the docs [here](hcp-upload.md).
+
+To allow for scanning to continue working without the need for HCP cloud connection you can use the new `--offline` flag as such.
+```bash
+vault-radar scan-jira --offline -u <INSTANCE URL> -p <PROJECT KEY> -o <PATH TO OUTPUT>.csv
+```
+
 ### Scan using a Vault index file
 perform a scan using a generated vault index and write the results to an outfile
 ```bash
