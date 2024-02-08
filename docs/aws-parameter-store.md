@@ -56,6 +56,15 @@ In this mode, if a risk was previously found in Vault, the scan results will rep
 vault-radar scan-aws-parameter-store -r <REGION CODE> -o <PATH TO OUTPUT>.csv --index-file <PATH TO VAULT INDEX>.jsonl
 ```
 
+### HCP connection scanning behavior
+
+The default behavior of scan commands that have `hcp-upload` functionality is to require an HCP cloud connection to scan by default. This is to ensure that hashes are generated using a shared salt from the cloud keeping consistency across scans. In order to populate the HCP connection information needed you view the docs [here](hcp-upload.md).
+
+To allow for scanning to continue working without the need for HCP cloud connection you can use the new `--offline` flag as such.
+```bash
+vault-radar scan-aws-parameter-store --offline -r <REGION CODE> -o <PATH TO OUTPUT>.csv
+```
+
 ### Scan and restrict the number of secrets found
 
 To stop scanning when the defined number of secrets are found
