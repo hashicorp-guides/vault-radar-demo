@@ -19,7 +19,7 @@ In order to provide the information to `vault-radar`, assign the appropriate val
 ### Jira Server
 For self hosted versions of Jira, there are up to 2 different patterns possible.
 
-Jira Software Version 8.14 and higher support [creating a Personal Access Token for a user](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html). The token will have all the same access rights as the user who creates it. To use the token set the following environment variable to the generated token:
+Jira Software Version 8.14 and higher support [creating a Personal Access Token for a user](https://developer.atlassian.com/server/jira/platform/personal-access-token/). The token will have all the same access rights as the user who creates it. To use the token set the following environment variable to the generated token:
 `JIRA_PERSONAL_ACCESS_TOKEN`
 
 Using a personal access token is more secure and should be the preferred access pattern. A personal access token is easier to revoke and regenerate, and generally has a smaller blast radius than a password.
