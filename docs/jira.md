@@ -1,9 +1,5 @@
 # `scan-jira` (experimental)
-This `vault-radar` command is used for scanning an Atlassian Jira Cloud instance.
-
-Caveats of this experimental state: 
-- Only Jira Cloud is supported. Jira Server (self-hosted) is currently not supported.
-- Scans will only ingest the latest version of issue descriptions.
+This `vault-radar` command is used for scanning an Atlassian Jira Cloud instance. We currently support scanning the latest version of Jira issue descriptions and all issue comments.
 
 ## Authentication
 `vault-radar` needs some authentication credentials in order to be able to make requests to the Jira Cloud instance.
