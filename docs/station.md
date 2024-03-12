@@ -9,7 +9,7 @@ In order to run `station` in your environment there are 3 configuration steps re
 
 ### Create a Service Principal
 
-You will need to log into the HCP web portal to create your Service Principals. You can follow the HCP docs to create your [Project Service Principals](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals#project-level-service-principals-1). You will need to create the Service Principals at Admin level, more information about this level contained in [these](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/users#project-role) HCP docs.
+You will need to log into the HCP web portal to create your Service Principals. You can follow the HCP docs to create your [Project Service Principals](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals#project-level-service-principals-1). You will need to create the Service Principals at Admin level, more information about this level contained in [these](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/users#project-role) HCP docs. You will also need to generate a [service principal key](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals#generate-a-service-principal-key) that gives you a client id and client secret that you will use in the next step.
 
 ### Create a Station in the HCP Portal
 
