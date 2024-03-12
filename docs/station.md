@@ -25,7 +25,7 @@ export HCP_CLIENT_ID=<HCP_CLIENT_ID>
 export HCP_CLIENT_SECRET=<HCP_CLIENT_SECRET>
 
 # The Station Id that was provided after creation
-export HCP_STATION_ID=<STATION_ID>
+export HCP_RADAR_STATION_ID=<STATION_ID>
 ```
 
 Your HCP Project Id can be found by selecting your project --> `Project Settings` --> `Project ID`.
