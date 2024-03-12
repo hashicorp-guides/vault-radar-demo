@@ -13,7 +13,7 @@ You will need to log into the HCP web portal to create your Service Principals. 
 
 ### Create a Station in the HCP Portal
 
-> **_Note:_** Before you create a station, there is currently now way to delete stations via the UI
+> **_Note:_** Before you create a station, there is currently no way to delete stations via the UI
 
 Now, you will need to initiate a station in the HCP web portal. If it's your first time using `Vault Radar` in HCP, you will need to configure a data source of your choice in order to get the `Station` tab view. This data source will not be used for running the station at all. This is a known UX issue that will be fixed in a future iteration.
 
