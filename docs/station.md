@@ -21,6 +21,8 @@ Once you have the `Station` tab view, you can start working through the station 
 
 ### Configure your Local Environment
 
+To run station you will need your client id and client secret from the service principal you just created, as well as your project and station id, which will be provided to you during your station creation flow.
+
 To run station, the following environment variables must be set:
 
 ```bash
@@ -32,7 +34,7 @@ export HCP_CLIENT_SECRET=<HCP_CLIENT_SECRET>
 export HCP_RADAR_STATION_ID=<STATION_ID>
 ```
 
-Your HCP Project ID can be found by selecting your project --> `Project Settings` --> `Project ID`.
+Your HCP Project ID can also be found by selecting your project --> `Project Settings` --> `Project ID`.
 
 ## Running Station
 
