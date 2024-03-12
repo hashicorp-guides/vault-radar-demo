@@ -1,12 +1,11 @@
 # station (Private Beta)
 A hybrid station has the capability to trigger a scan within your Virtual Private Cloud (VPC) environment based on the inputs provided through the HCP UI.
-The `station` command is used to fetch scan jobs from [HCP](https://portal.cloud.hashicorp.com/)and execute them in your VPC. It will scan any available jobs, otherwise it will sleep and wait for a job to be queued in HCP.
+The `station` command is used to fetch scan jobs from [HCP](https://portal.cloud.hashicorp.com/) and execute them in your VPC. It will scan any available jobs, otherwise it will sleep and wait for a job to be queued in HCP.
 
 ## Setting Up
 In order to run `station` in your environment there are 3 configuration steps required in HCP and your local environment.
 
 ### Create a Service Principal
-**Note** Does the type of SP matter in this case?
 You will need to log into the HCP web portal to create your Service Principals. You can follow the HCP docs to create your [Project Service Principals](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/service-principals#project-level-service-principals-1). You will need to create the Service Principals at Admin level, more information about this level contained in [these](https://developer.hashicorp.com/hcp/docs/hcp/admin/iam/users#project-role) HCP docs.
 
 ### Create a Station in the HCP Portal
