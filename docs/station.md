@@ -52,6 +52,8 @@ This command has no local output but is still running in the background, waiting
 
 Now that station is up and running, we can add a resource to be scanned. In the `Station` tab in the HCP web portal, select `Add resource to station`, which will prompt you to add a Git URL as your resource. Your locally running Station will pull this job, scan it, and upload events to HCP. You can view your newly added resource in the `Resources` pane.
 
+**Note that you should not configure a resource that is being scanned by SaaS for station.**
+
 ### View Events
 
 After the scan, all the events are populated under the events tab.
