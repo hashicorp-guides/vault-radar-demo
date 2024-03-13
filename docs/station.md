@@ -1,7 +1,7 @@
 # station (Private Beta)
 
 A hybrid station has the capability to scan a resource within your Virtual Private Cloud (VPC) environment based on the inputs provided through the HCP UI.
-The `station` command is used to fetch scan jobs from [HCP](https://portal.cloud.hashicorp.com/) and execute them in your VPC. It will scan any available jobs, otherwise it will sleep and wait for a job to be queued in HCP.
+The `station` command is used to fetch scan jobs for resources configured in [HCP](https://portal.cloud.hashicorp.com/) and execute them in your VPC. It will scan any available jobs, otherwise it will sleep and wait for a job to be queued in HCP.
 
 ## Setting Up
 
