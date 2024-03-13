@@ -34,6 +34,8 @@ export HCP_CLIENT_SECRET=<HCP_CLIENT_SECRET>
 export HCP_RADAR_STATION_ID=<STATION_ID>
 ```
 
+You will also need to ensure you hae the proper environment variable set for authentication to git. You can use the following [docs](https://github.com/hashicorp-guides/vault-radar-demo/blob/main/docs/git.md#authentication) to set your git auth token
+
 Your HCP Project ID can also be found by selecting your project --> `Project Settings` --> `Project ID`.
 
 ## Running Station
