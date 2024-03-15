@@ -18,3 +18,5 @@ api_addr = "http://0.0.0.0:8205"
 cluster_name = "vault_1"
 
 log_level = "debug"
+
+ui = true

@@ -14,8 +14,8 @@ token provided. `vault-radar` will attempt to use the following endpoints:
 | Mount   | Resource                   | Method | Endpoint |
 |---------|----------------------------|--------|------------|
 | System  | List namespaces            | `LIST` | [sys/namespaces](https://developer.hashicorp.com/vault/api-docs/system/namespaces#list-namespaces) |
-| System  | List auth mounts           | `LIST` | [sys/auth](https://developer.hashicorp.com/vault/api-docs/system/auth#list-auth-methods) |
-| System  | List secret mounts         | `LIST` | [sys/mounts](https://developer.hashicorp.com/vault/api-docs/system/mounts#list-mounted-secrets-engines) |
+| System  | List auth methods          | `GET`  | [sys/auth](https://developer.hashicorp.com/vault/api-docs/system/auth#list-auth-methods) |
+| System  | List secret mounts         | `GET`  | [sys/mounts](https://developer.hashicorp.com/vault/api-docs/system/mounts#list-mounted-secrets-engines) |
 | AppRole | List roles                 | `LIST` |  [auth/:mount-path/role](https://developer.hashicorp.com/vault/api-docs/auth/approle#list-roles) |
 | AppRole | List secret ID accessors   | `LIST` | [auth/:mount-path/role/:role_name/secret-id](https://developer.hashicorp.com/vault/api-docs/auth/approle#list-secret-id-accessors) |
 | AppRole | Lookup secret ID accessors | `POST` | [auth/:mount-path/role/:role_name/secret-id-accessor/lookup](https://developer.hashicorp.com/vault/api-docs/auth/approle#read-approle-secret-id-accessor) |
