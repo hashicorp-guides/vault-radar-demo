@@ -15,7 +15,7 @@ Note: internally CLI uses https:// to clone the repo and ot sets HTTP `username:
 to the value of `VAULT_RADAR_GIT_TOKEN`. Contact your git server provider documentation about the exact format used for 
 https:// auth in case the format described above does not work. 
 
-Note 2: For GitHub repos (with 'github' as part of repo url), CLI will use `GITHUB_TOKEN` variable if it exists. 
+Note 2: In previous versions, the `GITHUB_TOKEN` variable was supported by the CLI to access private github repos, but this functionality has been removed.
 
 ## Usage
 
