@@ -56,4 +56,4 @@ After the scan, all the events are populated under the events tab.
 
 ### Currently Supported Scan Data Sources
 
-- [`scan-repo`](git.md)
+- [`scan repo`](https://developer.hashicorp.com/hcp/docs/vault-radar/cli/scan/repo)
