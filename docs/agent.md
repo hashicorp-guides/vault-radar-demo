@@ -3,7 +3,10 @@
 A hybrid agent has the capability to scan a resource within your Virtual Private Cloud (VPC) environment based on the inputs provided through the HCP UI.
 The `agent` command is used to fetch scan jobs for resources configured in [HCP](https://portal.cloud.hashicorp.com/) and execute them in your VPC. It will scan any available jobs, otherwise it will sleep and wait for a job to be queued in HCP.
 
-## Setting Up
+## Installation
+The Agent is currently a subcommand of the `vault-radar` CLI. To use the Agent, please install or update the latest CLI. [See here for instructions](https://developer.hashicorp.com/hcp/docs/vault-radar/cli#download-and-install-cli).
+
+## Usage
 
 In order to run the `agent` in your environment there are 3 configuration steps required in HCP and your local environment.
 
