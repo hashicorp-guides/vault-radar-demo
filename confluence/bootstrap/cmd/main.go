@@ -23,13 +23,13 @@ import (
 )
 
 const (
-	confluenceInstanceURL = "https://hashicorp-team-ydfxybh0.atlassian.net"
+	confluenceInstanceURL = "http://localhost:8090"
 
 	// Whether to generate pages across all spaces in the Confluence instance, instead of just the one hard-coded space below
 	useAllSpaces = false
 
 	// If useAllSpaces is true, the script can take hours if not days to complete for Confluence instances with many spaces
-	//  spaceKeyAfter provides a shortcut to start the script from spaces with keys alphabetically equal to or after
+	//  spaceKeyAfter provides a shortcut to start the script from spaces with keys alphabetically equal to or after it
 	spaceKeyAfter         = ""
 	maxUpdatePageAttempts = 3
 
