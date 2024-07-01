@@ -4,6 +4,7 @@ go 1.21.0
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.23.2
+	github.com/google/uuid v1.6.0
 	github.com/hashicorp/go-retryablehttp v0.7.4
 	gopkg.in/yaml.v3 v3.0.1
 )
