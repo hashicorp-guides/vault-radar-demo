@@ -21,9 +21,10 @@ import (
 )
 
 const (
-	confluenceInstanceURL = "http://localhost:8090"
-	spaceName             = "Vault Radar Demo"
-	spaceKey              = "VRD"
+	useAllSpaces          = true
+	confluenceInstanceURL = "https://hashicorp-team-ydfxybh0.atlassian.net"
+	globalSpaceName       = "ab-ez-shakira-sandra Home\n"
+	globalSpaceKey        = "AbEzShakiraSandra"
 	spaceDescription      = "A Confluence Space for demoing and/or testing vault-radar"
 	numberOfPagesToCreate = 50
 	// we will randomly choose between 1 and maxNumberOfVersionsToCreate for each page and create that many different
@@ -50,23 +51,35 @@ var restClient *http.Client
 func main() {
 	ctx := context.Background()
 
-	if spaceExistsAlready(ctx) {
-		fmt.Printf("Found a space with key: %s\n", spaceKey)
+	var spaceKeys []string
+	if useAllSpaces {
+		spaceKeys = getAllSpaceKeys(ctx)
 	} else {
-		createSpace(ctx)
+		if spaceExistsAlready(ctx, globalSpaceKey, globalSpaceName) {
+			fmt.Printf("Found a space with key: %s\n", globalSpaceKey)
+		} else {
+			createSpace(ctx, globalSpaceKey, globalSpaceName)
+		}
+
+		spaceKeys = append(spaceKeys, globalSpaceKey)
 	}
 
 	sp := NewSecretProvider()
 
-	fmt.Printf("Creating %d pages\n", numberOfPagesToCreate)
+	for i := 0; i < len(spaceKeys); i++ {
+		spaceKey := spaceKeys[i]
 
-	// create pages with different versions
-	for i := 0; i < numberOfPagesToCreate; i++ {
-		pageID := createPage(ctx, &sp)
-		versionCount := rand.Intn(maxNumberOfVersionsToCreate)
-		for v := 2; v <= versionCount; v++ {
-			updatePage(ctx, pageID, v, &sp)
+		fmt.Printf("Creating %d pages in space with key %s\n", numberOfPagesToCreate, spaceKey)
+
+		// create pages with different versions
+		for i := 0; i < numberOfPagesToCreate; i++ {
+			pageID := createPage(ctx, &sp, spaceKey)
+			versionCount := rand.Intn(maxNumberOfVersionsToCreate)
+			for v := 2; v <= versionCount; v++ {
+				updatePage(ctx, pageID, v, &sp)
+			}
 		}
+
 	}
 
 	fmt.Println("bootstrapping complete")
@@ -84,6 +97,15 @@ type pageRequestBody struct {
 // space is a struct representing a space json blob in a confluence request/response
 type space struct {
 	Key string `json:"key,omitempty"`
+}
+
+type links struct {
+	Next string `json:"next"`
+}
+
+type spacesResponseBody struct {
+	Results []space `json:"results"`
+	Links   links   `json:"_links"`
 }
 
 // pageBody is a struct representing a body json blob in a confluence page request/response
@@ -166,8 +188,61 @@ func getClient() *http.Client {
 	return restClient
 }
 
+// getAllSpaceKeys fetches the list of spaces in the instance
+func getAllSpaceKeys(ctx context.Context) []string {
+	var allSpaceKeys []string
+
+	baseUrl := confluenceInstanceURL
+	if isCloud() {
+		baseUrl = baseUrl + "/wiki"
+	}
+
+	nextUrlSuffix := "/rest/api/space"
+	for hasNext := true; hasNext; hasNext = nextUrlSuffix != "" {
+		nextUrl := baseUrl + nextUrlSuffix
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, nextUrl, nil)
+		if err != nil {
+			fmt.Printf("error building request to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		setHeaders(req)
+
+		fmt.Printf("fetching another page of spaces: %s\n", nextUrl)
+		resp, err := getClient().Do(req)
+		if err != nil {
+			fmt.Printf("error making request to nextUrl: %s to fetch spaces: %s\n", nextUrl, err)
+			os.Exit(1)
+		}
+		checkResponse(resp)
+
+		body := spacesResponseBody{}
+		err = json.NewDecoder(resp.Body).Decode(&body)
+		if err != nil {
+			fmt.Printf("error unmarshaling response to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		err = resp.Body.Close()
+		if err != nil {
+			fmt.Printf("error closing response body to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		nextUrlSuffix = body.Links.Next
+		for i := 0; i < len(body.Results); i++ {
+			spaceStruct := body.Results[i]
+			allSpaceKeys = append(allSpaceKeys, spaceStruct.Key)
+		}
+	}
+
+	fmt.Printf("Fetched list of space keys %v\n", allSpaceKeys)
+
+	return allSpaceKeys
+}
+
 // spaceExistsAlready fetches the space, and returns false if makes and executes the request to create a Confluence space
-func spaceExistsAlready(ctx context.Context) bool {
+func spaceExistsAlready(ctx context.Context, spaceKey, spaceName string) bool {
 	url := confluenceInstanceURL
 	if isCloud() {
 		url = url + "/wiki"
@@ -199,7 +274,7 @@ func spaceExistsAlready(ctx context.Context) bool {
 }
 
 // createSpace makes and executes the request to create a Confluence space
-func createSpace(ctx context.Context) {
+func createSpace(ctx context.Context, spaceKey, spaceName string) {
 	url := confluenceInstanceURL
 	if isCloud() {
 		url = url + "/wiki"
@@ -238,7 +313,7 @@ func createSpace(ctx context.Context) {
 	}
 }
 
-func createPage(ctx context.Context, secretProvider *secretProvider) string {
+func createPage(ctx context.Context, secretProvider *secretProvider, spaceKey string) string {
 	var secret interface{}
 	r := rand.Intn(secretSprinkleRatio)
 	if r == 0 {
