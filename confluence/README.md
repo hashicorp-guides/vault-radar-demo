@@ -47,9 +47,10 @@ http://localhost:8090/pages/viewinfo.action?pageId=12345 # 12345 is the page ID
   * you will need to set the Auth Variables, like **personalAccessToken**
   * if you are testing a different endpoint change the **confluenceInstanceURL**
   * feel free to change other variables like the number of pages to create, Space Name, Key or Description.
-* run `go run cmd/main.go` if there are errors, feel free to reach out, otherwise if it completes without any errors then your instance should be updates with additional content
+* run `go run cmd/main.go 2>&1 | tee -a confluence-bootstrap.txt` if there are errors, feel free to reach out, otherwise if it completes without any errors then your instance should be updates with additional content
+  * this will generate, display, and append logs to the file confluence-bootstrap.txt to preserve the run history
 
-The command with use the `secrets.yaml` as a source of secrets to occassionally add to the page contents.
+The command with use the `secrets.yaml` as a source of secrets to occasionally add to the page contents.
 
 ## My confluence instance seems to be in a bad state and the container keeps crashing
 To fix this, first bring down all the containers:

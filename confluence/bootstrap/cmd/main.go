@@ -14,18 +14,31 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/brianvoe/gofakeit/v6"
+	"github.com/google/uuid"
 	retryablehttp "github.com/hashicorp/go-retryablehttp"
 	"gopkg.in/yaml.v3"
 )
 
 const (
 	confluenceInstanceURL = "http://localhost:8090"
-	spaceName             = "Vault Radar Demo"
-	spaceKey              = "VRD"
-	spaceDescription      = "A Confluence Space for demoing and/or testing vault-radar"
-	numberOfPagesToCreate = 50
+
+	// Whether to generate pages across all spaces in the Confluence instance, instead of just the one hard-coded space below
+	useAllSpaces = false
+
+	// If useAllSpaces is true, the script can take hours if not days to complete for Confluence instances with many spaces
+	//  spaceKeyAfter provides a shortcut to start the script from spaces with keys alphabetically equal to or after it
+	spaceKeyAfter         = ""
+	maxUpdatePageAttempts = 3
+
+	// If useAllSpaces is false, the script can generate a space to store pages in
+	globalSpaceName  = "Vault Radar Demo"
+	globalSpaceKey   = "VRD"
+	spaceDescription = "A Confluence Space for demoing and/or testing vault-radar"
+
+	numberOfPagesToCreate = 25
 	// we will randomly choose between 1 and maxNumberOfVersionsToCreate for each page and create that many different
 	// versions of the page
 	maxNumberOfVersionsToCreate = 10
@@ -50,23 +63,59 @@ var restClient *http.Client
 func main() {
 	ctx := context.Background()
 
-	if spaceExistsAlready(ctx) {
-		fmt.Printf("Found a space with key: %s\n", spaceKey)
+	var spaceKeys []string
+	if useAllSpaces {
+		// Use all spaces in the Confluence instance (and generate pages across each space in the instance)
+		spaceKeys = getAllSpaceKeys(ctx)
 	} else {
-		createSpace(ctx)
+		// Only generate and use one space for bootstrapping
+		if spaceExistsAlready(ctx, globalSpaceKey, globalSpaceName) {
+			fmt.Printf("Found a space with key: %s\n", globalSpaceKey)
+		} else {
+			createSpace(ctx, globalSpaceKey, globalSpaceName)
+		}
+
+		spaceKeys = append(spaceKeys, globalSpaceKey)
 	}
 
 	sp := NewSecretProvider()
 
-	fmt.Printf("Creating %d pages\n", numberOfPagesToCreate)
+	for i := 0; i < len(spaceKeys); i++ {
+		spaceKey := spaceKeys[i]
 
-	// create pages with different versions
-	for i := 0; i < numberOfPagesToCreate; i++ {
-		pageID := createPage(ctx, &sp)
-		versionCount := rand.Intn(maxNumberOfVersionsToCreate)
-		for v := 2; v <= versionCount; v++ {
-			updatePage(ctx, pageID, v, &sp)
+		fmt.Printf("[%d/%d] Will create up to %d pages in space with key %s\n", i, len(spaceKeys), numberOfPagesToCreate, spaceKey)
+
+		// create pages with different versions
+		for i := 0; i < numberOfPagesToCreate; i++ {
+			pageID := createPage(ctx, &sp, spaceKey)
+			versionCount := rand.Intn(maxNumberOfVersionsToCreate)
+
+			for v := 2; v <= versionCount; v++ {
+
+				// Confluence Cloud will raise 409 conflicts for race conditions with two update requests are made
+				//  in quick succession - looks like this is because the previous update request doesn't release the lock
+				//  in time, which fails the next update request's validation that one row was updated
+
+				attemptCount := 0
+				success := false
+				for success == false && attemptCount < maxUpdatePageAttempts {
+					success = updatePage(ctx, pageID, v, &sp)
+					if success == false {
+						fmt.Printf("[%d/%d] Ran into update page error for pageID %s and version %d, sleeping and trying again\n", attemptCount, maxUpdatePageAttempts, pageID, v)
+						time.Sleep(1000 * time.Millisecond)
+					}
+
+					attemptCount = attemptCount + 1
+
+					if success == false && attemptCount == maxUpdatePageAttempts {
+						fmt.Printf("Ran into update page errors consecutively %d times, giving up", attemptCount)
+						os.Exit(1)
+					}
+				}
+
+			}
 		}
+
 	}
 
 	fmt.Println("bootstrapping complete")
@@ -84,6 +133,15 @@ type pageRequestBody struct {
 // space is a struct representing a space json blob in a confluence request/response
 type space struct {
 	Key string `json:"key,omitempty"`
+}
+
+type links struct {
+	Next string `json:"next"`
+}
+
+type spacesResponseBody struct {
+	Results []space `json:"results"`
+	Links   links   `json:"_links"`
 }
 
 // pageBody is a struct representing a body json blob in a confluence page request/response
@@ -166,8 +224,63 @@ func getClient() *http.Client {
 	return restClient
 }
 
+// getAllSpaceKeys fetches the list of spaces in the instance
+func getAllSpaceKeys(ctx context.Context) []string {
+	var allSpaceKeys []string
+
+	baseUrl := confluenceInstanceURL
+	if isCloud() {
+		baseUrl = baseUrl + "/wiki"
+	}
+
+	nextUrlSuffix := "/rest/api/space?limit=100"
+	for hasNext := true; hasNext; hasNext = nextUrlSuffix != "" {
+		nextUrl := baseUrl + nextUrlSuffix
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, nextUrl, nil)
+		if err != nil {
+			fmt.Printf("error building request to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		setHeaders(req)
+
+		fmt.Printf("fetching another page of spaces: %s\n", nextUrl)
+		resp, err := getClient().Do(req)
+		if err != nil {
+			fmt.Printf("error making request to nextUrl: %s to fetch spaces: %s\n", nextUrl, err)
+			os.Exit(1)
+		}
+		checkResponse(resp)
+
+		body := spacesResponseBody{}
+		err = json.NewDecoder(resp.Body).Decode(&body)
+		if err != nil {
+			fmt.Printf("error unmarshaling response to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		err = resp.Body.Close()
+		if err != nil {
+			fmt.Printf("error closing response body to fetch spaces: %s\n", err)
+			os.Exit(1)
+		}
+
+		nextUrlSuffix = body.Links.Next
+		for i := 0; i < len(body.Results); i++ {
+			spaceStruct := body.Results[i]
+			if spaceKeyAfter == "" || spaceKeyAfter <= spaceStruct.Key {
+				allSpaceKeys = append(allSpaceKeys, spaceStruct.Key)
+			}
+		}
+	}
+
+	fmt.Printf("Fetched list of space keys %v\n", allSpaceKeys)
+
+	return allSpaceKeys
+}
+
 // spaceExistsAlready fetches the space, and returns false if makes and executes the request to create a Confluence space
-func spaceExistsAlready(ctx context.Context) bool {
+func spaceExistsAlready(ctx context.Context, spaceKey, spaceName string) bool {
 	url := confluenceInstanceURL
 	if isCloud() {
 		url = url + "/wiki"
@@ -199,7 +312,7 @@ func spaceExistsAlready(ctx context.Context) bool {
 }
 
 // createSpace makes and executes the request to create a Confluence space
-func createSpace(ctx context.Context) {
+func createSpace(ctx context.Context, spaceKey, spaceName string) {
 	url := confluenceInstanceURL
 	if isCloud() {
 		url = url + "/wiki"
@@ -238,7 +351,9 @@ func createSpace(ctx context.Context) {
 	}
 }
 
-func createPage(ctx context.Context, secretProvider *secretProvider) string {
+func createPage(ctx context.Context, secretProvider *secretProvider, spaceKey string) string {
+	// fmt.Printf("Creating page in space %s\n", spaceKey)	// Uncomment for extra debug logging
+
 	var secret interface{}
 	r := rand.Intn(secretSprinkleRatio)
 	if r == 0 {
@@ -308,7 +423,9 @@ func createPage(ctx context.Context, secretProvider *secretProvider) string {
 }
 
 // updatePage constructs and executes a request to update a page similar to how it's created
-func updatePage(ctx context.Context, pageID string, v int, secretProvider *secretProvider) {
+func updatePage(ctx context.Context, pageID string, v int, secretProvider *secretProvider) bool {
+	// fmt.Printf("Updating page %s with version %d\n", pageID, v) // Uncomment for extra debug logging
+
 	url := confluenceInstanceURL
 	if isCloud() {
 		url = url + "/wiki"
@@ -322,9 +439,10 @@ func updatePage(ctx context.Context, pageID string, v int, secretProvider *secre
 		secret = fmt.Sprintf("%v\n", secretProvider.Get())
 	}
 
-	pageContent := fmt.Sprintf(`<p>%s<br/><br/>%s<br/><br/>%s</p>`,
+	pageContent := fmt.Sprintf(`<p>%s<br/><br/>%s<br/><br/>%s<br/><br/>%s</p>`,
 		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
 		gofakeit.LoremIpsumParagraph(1, 10, 15, ""),
+		uuid.New().String(),
 		secret)
 
 	updatePageBody := pageRequestBody{
@@ -358,7 +476,7 @@ func updatePage(ctx context.Context, pageID string, v int, secretProvider *secre
 		fmt.Printf("error making request to update first page again: %s\n", err)
 		os.Exit(1)
 	}
-	checkResponse(resp)
+	return resp.StatusCode == 200
 }
 
 // setHeaders sets the common required headers to complete a request the confluence server
