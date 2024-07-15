@@ -30,7 +30,7 @@ if __name__ == '__main__':
     elif choice == '2':
         domain = input('Enter your GitHub Enterprise Server domain name (i.e. github.companyname.com): ')
         domain = urlparse(domain if '//' in domain else f'//{domain}').netloc
-        webhook_url = f'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events?domain={domain}'
+        webhook_url = webhook_url + f"?domain={domain}"
     else:
         print("Invalid option")
         sys.exit()
