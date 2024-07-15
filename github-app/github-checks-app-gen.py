@@ -17,12 +17,12 @@ logger = init_logger()
 
 
 if __name__ == '__main__':
-    print("Please select an option cloud or enterprise server:")
+    print("Please select an option GitHub Cloud or GitHub Enterprise Server:")
     print("1. GitHub Cloud")
     print("2. GitHub Enterprise Server")
     choice = input("Enter 1 or 2: ")
 
-    name = 'Hashicorp Vault Radar Test App'
+    name = 'HashiCorp Vault Radar Checks App'
     domain = 'github.com'
     webhook_url =  'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events'
     if choice == '1':
