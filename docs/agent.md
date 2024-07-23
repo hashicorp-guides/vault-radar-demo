@@ -35,9 +35,10 @@ export HCP_CLIENT_SECRET=<HCP_CLIENT_SECRET>
 export HCP_RADAR_AGENT_POOL_ID=<AGENT_POOL_ID>
 ```
 
-You will also need to ensure you have the proper environment variable set for authentication to git. You can use the following [docs](https://github.com/hashicorp-guides/vault-radar-demo/blob/main/docs/git.md#authentication) to set your git auth token.
-
 Your HCP Project ID can also be found by selecting your project --> `Project Settings` --> `Project ID`.
+
+#### Configure Secret Values
+For most Data Sources the agent is going to need some kind of token or secret to authenticate with the Data Source itself for scanning. When onboarding your Data Source on HCP, you may be prompted to configure the secret. The agent is expecting a URI. Currently the only format supported is a URI for an Environment Variable, which looks like this: `env://ENV_VARIABLE_NAME`. If for example we are configuring a GitHub Data Source, we are going to need to generate a GitHub PAT for the Agent to use. And then the value of the PAT is going to be stored locally where the Agent runs as an Environment Variable. If you saved the environment variable as `VAULT_RADAR_GIT_TOKEN` then the vaule you should enter in HCP is `env://VAULT_RADAR_GIT_TOKEN`.
 
 ## Running the Agent
 
