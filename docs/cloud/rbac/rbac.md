@@ -5,4 +5,4 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 
 ## Setup
 
-![](docs/cloud/rbac/img/1-RBAC.png)
+![](img/1-RBAC.png)
