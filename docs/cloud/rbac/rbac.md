@@ -9,7 +9,7 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 4. [Assign a Vault Radar developer role to the group](#assign-a-vault-radar-developer-role-to-the-group)
 5. [Add Vault Radar resources to the project level group](#add-vault-radar-resources-to-a-project-level-group)
 
-# Additional guides
+## Additional guides
 - [Removing Vault Radar resources from a project level group](#removing-vault-radar-resources-from-a-project-level-group)
 - [Accessing a Vault Radar resource once RBAC has been applied](#accessing-a-vault-radar-resource-once-rbac-has-been-applied)
 - [Accessing a Vault Radar resource as a non-admin user without any RBAC applied](#accessing-a-vault-radar-resource-as-a-non-admin-user-without-any-rbac-applied)
