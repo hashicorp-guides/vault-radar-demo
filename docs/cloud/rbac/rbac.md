@@ -9,6 +9,11 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 4. [Assign a Vault Radar developer role to the group](#assign-a-vault-radar-developer-role-to-the-group)
 5. [Add Vault Radar resources to the project level group](#add-vault-radar-resources-to-a-project-level-group)
 
+# Additional guides
+- [Removing Vault Radar resources from a project level group](#removing-vault-radar-resources-from-a-project-level-group)
+- [Accessing a Vault Radar resource once RBAC has been applied](#accessing-a-vault-radar-resource-once-rbac-has-been-applied)
+- [Accessing a Vault Radar resource as a non-admin user without any RBAC applied](#accessing-a-vault-radar-resource-as-a-non-admin-user-without-any-rbac-applied)
+
 ### Create a group for the organization
 1. Navigate to the organizations page within HCP and click on an organization ![](img/GROUP-RBAC-SETUP-1.png)
 2. Within the organization, navigate to the Access Control page ![](img/GROUP-RBAC-SETUP-2.png)
@@ -43,16 +48,15 @@ You now have a project configured to use Vault Radar RBAC ![](img/GROUP-RBAC-SET
 4. Select the role to add the resource to the group ![](img/RBAC-IN-APP-4.png)
 The Resource(s) are now a part of the project level group ![](img/RBAC-IN-APP-5.png)
 
-### Remove Vault Radar resources from a project level group
+### Removing Vault Radar resources from a project level group
 1. Within the Vault Radar application, navigate to Resources ![](img/RBAC-IN-APP-1.png)
 2. Select the resource that you wish to remove from the group ![](img/RBAC-REMOVE-1.png)
 3. Click the trash can icon next to the group in the details pane for the resource ![](img/RBAC-REMOVE-2.png)
-The resource(s) are no longer a part of the project level group ![](img/RBAC-IN-APP-5.png)
 
-### Accessing a resource once RBAC has been applied
+### Accessing a Vault Radar resource once RBAC has been applied
 1. Navigate to the Vault Radar product and click the dropdown ![](img/RBAC-SELECT-RESOURCE-1.png)
 2. Select your resource and click "View Scan Events" ![](img/RBAC-SELECT-RESOURCE-2.png)
-You can now view events within the selected resource ![](img/RBAC-VIEWER-EVENTS.png)
+You can now view events within the selected resource, if you would like to change your resource, select the Resource dropdown and choose a different option ![](img/RBAC-VIEWER-EVENTS.png)
 
-### Accessing a resource as a non-admin user without any RBAC applied
+### Accessing a Vault Radar resource as a non-admin user without any RBAC applied
 If you are attempting to access radar on a project where you are not an admin user, you will see the following screen:  ![](img/RBAC-NO-PERMS.png)
