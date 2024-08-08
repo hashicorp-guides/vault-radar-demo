@@ -21,11 +21,15 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 4. Click create group ![](img/GROUP-RBAC-SETUP-4.png)
 5. Enter a name for the group and submit ![](img/GROUP-RBAC-SETUP-5.png)
 
+---
+
 ### Add members to the group
 > In order for the assigned group member to have RBAC enforced, the user **must not have any role assigned role at the organization level**.
 
 1. Click Add Members ![](img/GROUP-RBAC-SETUP-6.png)
 2. Select your group members and click "Add group members" ![](img/GROUP-RBAC-SETUP-7.png)
+
+---
 
 ### Create a project level group
 1. Navigate to a project page within your organization ![](img/GROUP-RBAC-SETUP-8.png)
@@ -35,6 +39,8 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 5. Within the Groups page, click "Add groups" ![](img/GROUP-RBAC-SETUP-12.png)
 6. Select the organization level group(s) that you would like to add and click "Add selected groups" ![](img/GROUP-RBAC-SETUP-13.png)
 
+---
+
 ### Assign a Vault Radar developer role to the group
 1. Click on the select service dropdown ![](img/GROUP-RBAC-SETUP-14.png)
 2. Select "Vault Radar" service from the dropdown ![](img/GROUP-RBAC-SETUP-15.png)
@@ -43,6 +49,8 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 5. Click "Add groups"  ![](img/GROUP-RBAC-SETUP-18.png) 
 You now have a project configured to use Vault Radar RBAC ![](img/GROUP-RBAC-SETUP-19.png)
 
+---
+
 ### Add Vault Radar resources to a project level group
 1. Within the Vault Radar application, navigate to Resources ![](img/RBAC-IN-APP-1.png)
 2. Select the resources that you wish to setup RBAC for and click "Assign Groups" ![](img/RBAC-IN-APP-2.png)
@@ -50,15 +58,21 @@ You now have a project configured to use Vault Radar RBAC ![](img/GROUP-RBAC-SET
 4. Select the role to add the resource to the group ![](img/RBAC-IN-APP-4.png)
 The Resource(s) are now a part of the project level group ![](img/RBAC-IN-APP-5.png)
 
+---
+
 ### Removing Vault Radar resources from a project level group
 1. Within the Vault Radar application, navigate to Resources ![](img/RBAC-IN-APP-1.png)
 2. Select the resource that you wish to remove from the group ![](img/RBAC-REMOVE-1.png)
 3. Click the trash can icon next to the group in the details pane for the resource ![](img/RBAC-REMOVE-2.png)
 
+---
+
 ### Accessing a Vault Radar resource once RBAC has been applied
 1. Navigate to the Vault Radar product and click the dropdown ![](img/RBAC-SELECT-RESOURCE-1.png)
 2. Select your resource and click "View Scan Events" ![](img/RBAC-SELECT-RESOURCE-2.png)
 You can now view events within the selected resource, if you would like to change your resource, select the Resource dropdown and choose a different option ![](img/RBAC-VIEWER-EVENTS.png)
+
+---
 
 ### Accessing a Vault Radar resource as a non-admin user without any RBAC applied
 If you are attempting to access radar on a project where you are not an admin user, you will see the following screen:  ![](img/RBAC-NO-PERMS.png)
