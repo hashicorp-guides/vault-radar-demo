@@ -23,7 +23,7 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 
 ### Add members to the group
 1. Click Add Members ![](img/GROUP-RBAC-SETUP-6.png)
-**Important**: In order for the assigned group member to have RBAC enforced, the user **must not have any role assigned role at the organization level**.
+#### In order for the assigned group member to have RBAC enforced, the user **must not have any role assigned role at the organization level**.
 2. Select your group members and click "Add group members" ![](img/GROUP-RBAC-SETUP-7.png)
 
 ### Create a project level group
