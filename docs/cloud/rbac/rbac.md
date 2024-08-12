@@ -24,7 +24,7 @@ Vault radar supports RBAC at the resource level, allowing admin users to manage 
 ---
 
 ### Add members to the group
-**In order for the assigned group member to have RBAC enforced, the user must not have any role assigned role at the organization level**
+**In order for the assigned group member to have RBAC enforced, the user must not have any role assigned role at the organization or project level**
 1. Click Add Members ![](img/GROUP-RBAC-SETUP-6.png)
 2. Select your group members and click "Add group members" ![](img/GROUP-RBAC-SETUP-7.png)
 
@@ -68,7 +68,7 @@ The Resource(s) are now a part of the project level group ![](img/RBAC-IN-APP-5.
 
 ### Accessing a Vault Radar resource once RBAC has been applied
 1. Navigate to the Vault Radar product and click the dropdown ![](img/RBAC-SELECT-RESOURCE-1.png)
-2. Select your resource and click "View Scan Events" ![](img/RBAC-SELECT-RESOURCE-2.png)
+2. Select your resource and click "View scan results" ![](img/RBAC-SELECT-RESOURCE-2.png)
 You can now view events within the selected resource, if you would like to change your resource, select the Resource dropdown and choose a different option ![](img/RBAC-VIEWER-EVENTS.png)
 
 ---
