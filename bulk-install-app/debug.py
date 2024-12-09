@@ -10,15 +10,12 @@ def save_debug_info(folder, name, response):
 
         with open(f"{folder}/{name}-content.html", "w") as file:
             file.write(response.content.decode("utf-8"))
-            file.close()
 
         with open(f"{folder}/{name}-text.txt", "w") as file:
             file.write(response.text)
-            file.close()
 
         with open(f"{folder}/{name}-headers.txt", "w") as file:
             file.write(str(response.headers))
-            file.close()
 
 
 def translate_to_curl(response):
