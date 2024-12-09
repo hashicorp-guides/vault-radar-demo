@@ -8,12 +8,14 @@
 ## Bulk installing a GitHub Checks App across organizations
 1. Navigate to Vault Radar portal, and import the organizations that need to install the GitHub App 
 2. In `hashicorp-guides/vault-radar-demo/bulk-install-app`, generate an environment file `.env`, with the following variables set:
-   - `USERNAME` - the GitHub user's username
-   - `PASSWORD` - the GitHub user's password
-   - `DOMAIN` - the domain of the GitHub Enterprise Server 
+   - `GITHUB_USERNAME` - the GitHub user's username
+   - `GITHUB_PASSWORD` - the GitHub user's password
+   - `GITHUB_DOMAIN` - the domain of the GitHub Enterprise Server 
      (optional: only required for GitHub Enterprise Server)
    - `MAX_ORGANIZATIONS` - maximum number of successful organization installations per run of script 
      (optional: if not set, will install on all organizations)
+   - `GITHUB_APP_NAME` - the name of the app
+     (optional: if not set, will default to `hashicorp-vault-radar-checks-app`)
 3. Run the script with the following command to install: `python3 -u main.py 2>&1 | tee -a bulk-install-app-results.txt`
    Run the script with the following command to uninstall: `python3 -u main.py --uninstall 2>&1 | tee -a bulk-install-app-results.txt`
    NOTE: Only organizations/users that the logged in GitHub user has permissions to install/uninstall on will be installed/uninstalled.

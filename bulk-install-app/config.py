@@ -5,10 +5,10 @@ from urllib.parse import urlparse
 
 load_dotenv()
 
-DOMAIN = os.environ.get('DOMAIN') or 'github.com'
+DOMAIN = os.environ.get('GITHUB_DOMAIN') or 'github.com'
 GITHUB_APP_NAME = os.environ.get('GITHUB_APP_NAME') or 'hashicorp-vault-radar-checks-app'
-USERNAME = os.environ.get('USERNAME')
-PASSWORD = os.environ.get('PASSWORD')
+USERNAME = os.environ.get('GITHUB_USERNAME')
+PASSWORD = os.environ.get('GITHUB_PASSWORD')
 DEBUG = bool(int(os.environ.get('DEBUG'))) if os.environ.get('DEBUG') else False
 MAX_ORGANIZATIONS = int(os.environ.get('MAX_ORGANIZATIONS')) if os.environ.get('MAX_ORGANIZATIONS') else None
 

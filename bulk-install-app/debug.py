@@ -8,17 +8,17 @@ def save_debug_info(folder, name, response):
         if not os.path.exists(f"{folder}"):
             os.makedirs(f"{folder}")
 
-        file = open(f"{folder}/{name}-content.html", "w")
-        file.write(response.content.decode("utf-8"))
-        file.close()
+        with open(f"{folder}/{name}-content.html", "w") as file:
+            file.write(response.content.decode("utf-8"))
+            file.close()
 
-        file = open(f"{folder}/{name}-text.txt", "w")
-        file.write(response.text)
-        file.close()
+        with open(f"{folder}/{name}-text.txt", "w") as file:
+            file.write(response.text)
+            file.close()
 
-        file = open(f"{folder}/{name}-headers.txt", "w")
-        file.write(str(response.headers))
-        file.close()
+        with open(f"{folder}/{name}-headers.txt", "w") as file:
+            file.write(str(response.headers))
+            file.close()
 
 
 def translate_to_curl(response):
