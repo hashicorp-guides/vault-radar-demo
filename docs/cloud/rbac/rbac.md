@@ -2,8 +2,6 @@
 
 Vault radar supports RBAC at the resource level, allowing admin users to manage the access of a group's permissions to individual resources.
 
-> **Important Note:** In order for the assigned group member to have RBAC enforced, the user must not have any role assigned role at the organization or project level, and the group role must only have the developer role.
-
 ## Setup Overview
 1. [Create a group for the organization](#create-a-group-for-the-organization)
 2. [Add members to the group](#add-members-to-the-group)
@@ -58,6 +56,16 @@ You now have a project configured to use Vault Radar RBAC ![](img/GROUP-RBAC-SET
 3. Select the project level group that you wish to give access to the resource(s) ![](img/RBAC-IN-APP-3.png)
 4. Select the role to add the resource to the group ![](img/RBAC-IN-APP-4.png)
 The Resource(s) are now a part of the project level group ![](img/RBAC-IN-APP-5.png)
+
+---
+
+### Vault Radar resource roles
+
+Within Vault Radar, we offer two different roles when assigning a group to a resource:
+- Resource Viewer
+  - Can only view events for a given resource
+- Resource Contributor
+  - Can view and modify the state of events for a given resource
 
 ---
 
