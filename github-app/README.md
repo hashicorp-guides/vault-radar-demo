@@ -97,7 +97,5 @@ Please follow the instructions [here to use the common HashiCorp Vault Radar Git
 
 9. On the Agent host(s) configure an environment variable with the value of the **private key** and the **app id** from your GitHub App. Use the same variable names on all host(s).
 10. In the Radar UI, you can now setup and configure a GitHub App. When adding a new configuration, you should see the option to configure it for HCP or for your Agent like below. If you do not, reach out to your HashiCorp customer support contact for assistance.
-  ![GitHub Checks App Settings](github-checks-app-settings.png)
-
 11.  Then select GitHub Enterprise Server from the drop down and enter your values into the form. For the Private Key Location and App ID Location, the form is expecting a URI to the variable. For now we only support Environment Variables. For a variable named `ENV_VAR_1` the URI would be `env://ENV_VAR_1`. With all the information entered hit Save. The app is now configured. [See here for next steps on managing PR Checks and Policies](https://developer.hashicorp.com/hcp/docs/vault-radar/manage/create-pull-request-check-policies#configure-repositories).
   ![GitHub Checks App Settings](github-checks-app-settings-agent-enterprise.png)
