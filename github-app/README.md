@@ -5,7 +5,7 @@
 
 ## Creating a GitHub Enterprise Server App For **HCP Vault Radar** Scanning
 1. Run `python3 github-checks-app-gen.py`
-2. When prompted, select GitHub Enterprise Server by entering `1`
+2. When prompted, select GitHub Enterprise Server by entering `2`
 3. And then enter your enterprise server domain
 4. Copy/paste the URL into a browser of your choice
 5. Take note of the `webhook_secret=<webhook_secret>` in the URL
@@ -36,7 +36,7 @@ Please follow the instructions [here to use the common HashiCorp Vault Radar Git
 ## Creating a GitHub Cloud App For **Vault Radar Agent** Scanning
 
 1. Run `python3 github-checks-app-gen.py`
-2. When prompted, select GitHub Cloud by entering `2`
+2. When prompted, select GitHub Cloud by entering `1`
 2. And then provide a name for you Vault Radar GitHub App
 3. Copy/paste the URL into a browser of your choice
 4. Take note of the `webhook_secret=<webhook_secret>` in the URL
@@ -66,7 +66,7 @@ Please follow the instructions [here to use the common HashiCorp Vault Radar Git
 ## Creating a GitHub Enterprise Server App For **Vault Radar Agent** Scanning
 
 1. Run `python3 github-checks-app-gen.py`
-2. When prompted, select GitHub Enterprise Server by entering `1`
+2. When prompted, select GitHub Enterprise Server by entering `2`
 3. And then enter your enterprise server domain
 4. Copy/paste the URL into a browser of your choice
 5. Take note of the `webhook_secret=<webhook_secret>` in the URL
