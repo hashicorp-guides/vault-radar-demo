@@ -68,14 +68,9 @@ Please follow the instructions [here to use the common HashiCorp Vault Radar Git
 9. Once the app is created, take note of the webhook secret from the URL above, as well as these values from your app settings page:
     * app name
     * app ID
-    * client ID
-    * client secret
-      * You will likely have to generate this for the first time
     * private key
       * You will likely have to generate and download this for the first time
       * The key itself should be downloaded and stored safely on your machine, you will need to open the file to get the value using a text editor or something similar.
-
-  ![GitHub Checks App Settings](github-checks-app-settings.png)
 
 10. On the Agent host(s) configure an environment variable with the value of the **private key** from your GitHub App. Use the same variable name on all host(s).
 
@@ -111,14 +106,9 @@ Please follow the instructions [here to use the common HashiCorp Vault Radar Git
 8. Once the app is created, take note of the webhook secret from the URL above, as well as these values from your app settings page:
     * app name
     * app ID
-    * client ID
-    * client secret
-      * You will likely have to generate this for the first time
     * private key
       * You will likely have to generate and download this for the first time
       * The key itself should be downloaded and stored safely on your machine, you will need to open the file to get the value using a text editor or something similar.
-
-  ![GitHub Checks App Settings](github-checks-app-settings.png)
 
 9. On the Agent host(s) configure an environment variable with the value of the **private key** and the **app id** from your GitHub App. Use the same variable names on all host(s).
 
