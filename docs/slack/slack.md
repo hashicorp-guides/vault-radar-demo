@@ -22,7 +22,7 @@ Cloud](#add-slack-cloud).
 
 ### Requesting scopes for the Slack App
     
-After the slack app is created, we'll need to request scopes for your app. 
+After the Slack app is created, we'll need to request scopes for your app. 
 Scopes give the app permission to perform actions, such as reading slack messages and replies.
 To request scopes, open the Slack App and click on **OAuth & Permissions** in the app management page.
 1. Within **OAuth & Permissions**, scroll down to Scopes.
@@ -48,7 +48,7 @@ Copy the **User OAuth Token**
 The signing secret is used to validate webhooks received from Slack (also called as Events in Slack terminology). 
 
 To view and copy the signing secret:
-1. Open the slack app and click on the **Basic Information** section of the app management page
+1. Open the Slack app and click on the **Basic Information** section of the app management page
 2. Click on the **Show** button in the Signing Secret field found on the right pane
 3. Copy the value that will need to be entered in the **Enter Slack signing secret** text field
 
@@ -134,7 +134,7 @@ most recent activity.
 
 
 Slack apps listen and respond to events from your workspace. To enable webhooks for the Slack app, configure it to respond to events
-such as, when a message is posted to a channel or when a new channel is created.<br/><br/>
+such as when a message is posted to a channel or when a new channel is created.<br/><br/>
 To configure the Slack app to respond to events
 
 1. Open the Slack app and Select **Event Subscriptions** from the app management page
@@ -143,7 +143,7 @@ To configure the Slack app to respond to events
 
     ![Slack Events Subscribed](slack-cloud-events-subscribed.png)
 
-2. Set the **Request URL** to a URL where the vault radar listens to the incoming HTTP requests.
+2. Set the **Request URL** to a URL where the Vault Radar listens to the incoming HTTP requests.
 The **Request URL** is `https://api.cloud.hashicorp.com/2023-05-01/vault-radar/projects/<hashicorp-project-id>/api/webhook-events/code-servers/slack-cloud?org=<slack-workspace>`
    - **project-id** will be available in the portal's URL, and **slack-workspace** is the slack workspace name on where the slack app is installed.
 
