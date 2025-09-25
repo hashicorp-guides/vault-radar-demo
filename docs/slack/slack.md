@@ -33,7 +33,7 @@ To request scopes, open the slack app and click on **OAuth & Permissions** in th
 
 Once the OAuth scopes are requested, the slack app has to be installed onto the workspace to get the access token.
 
-1. Open the slak app and click on **OAuth & Permissions**section in the app management page
+1. Open the slack app and click on **OAuth & Permissions** section in the app management page
 1. Install the slack app by selecting the **Install to Workspace** button, under the section **OAuth Tokens**
 1. The Slack OAuth flow will start. Select **Allow** on the following screen to continue to install the slack app.
 
@@ -79,7 +79,7 @@ To view and copy the signing secret:
 <Note>
 
 Vault Radar has a limit of 5000 channels per workspace. If you have more
-then 5000 channels, Vault Radar will select the 5000 channels with the
+than 5000 channels, Vault Radar will select the 5000 channels with the
 most recent activity.
 
 </Note>
@@ -145,7 +145,6 @@ To configure the slack app to respond to events
 
 2. Set the **Request URL** to a URL where the vault radar listens to the incoming HTTP requests.
 The **Request URL** is `https://api.cloud.hashicorp.com/2023-05-01/vault-radar/projects/<hashicorp-project-id>/api/webhook-events/code-servers/slack-cloud?org=<slack-workspace>`
-   - **project-id** will be available in the portal's URL and
-   - **slack-workspace** is the slack workspace name on where the slack app is installed.
+   - **project-id** will be available in the portal's URL, and **slack-workspace** is the slack workspace name on where the slack app is installed.
 
 1. Wait for the **Request URL** to display as **Verified** 
