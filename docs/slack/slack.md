@@ -23,19 +23,19 @@ Cloud](#add-slack-cloud).
 ### Requesting scopes for the Slack App
     
 After the Slack app is created, we'll need to request scopes for your app. 
-Scopes give the app permission to perform actions, such as reading slack messages and replies.
-To request scopes, open the Slack App and click on **OAuth & Permissions** in the app management page.
+Scopes give the app permission to perform actions, such as reading Slack messages and replies.
+To request scopes, open the  App and click on **OAuth & Permissions** in the app management page.
 1. Within **OAuth & Permissions**, scroll down to Scopes.
 1. Under **User Token Scopes**, Select **Add an OAuth Scope** and add the following scopes.
     ![Slack App OAuth Scopes](slack-cloud-oauth-scopes.png)
 
 ### Install and Authorize Slack App
 
-Once the OAuth scopes are requested, the slack app has to be installed onto the workspace to get the access token.
+Once the OAuth scopes are requested, the Slack app has to be installed onto the workspace to get the access token.
 
-1. Open the slack app and click on **OAuth & Permissions** section in the app management page
-1. Install the slack app by selecting the **Install to Workspace** button, under the section **OAuth Tokens**
-1. The Slack OAuth flow will start. Select **Allow** on the following screen to continue to install the slack app.
+1. Open the Slack app and click on **OAuth & Permissions** section in the app management page
+1. Install the Slack app by selecting the **Install to Workspace** button, under the section **OAuth Tokens**
+1. The Slack OAuth flow will start. Select **Allow** on the following screen to continue to install the Slack app.
 
 ### Obtain Slack OAuth User Token
 
@@ -98,7 +98,7 @@ most recent activity.
 
 2. Enter the Slack signing secret in the **Enter your Slack signing secret** text field. Refer [here](#slack-signing-secret)
 
-3. Create an environment variable for the slack OAuth user token in the agent environment. To copy the token, refer [here](#obtain-slack-oauth-user-token)
+3. Create an environment variable for the Slack OAuth user token in the agent environment. To copy the token, refer [here](#obtain-slack-oauth-user-token)
    
    **Example:**
 
