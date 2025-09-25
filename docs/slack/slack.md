@@ -18,13 +18,13 @@ Cloud](#add-slack-cloud).
 
 ### Set up Slack App
 
-- To create a slack app, [start by going to Slack's app creation page](https://docs.slack.dev/quickstart/#creating) and click on **Create App**
+- To create a Slack app, [start by going to Slack's app creation page](https://docs.slack.dev/quickstart/#creating) and click on **Create App**
 
 ### Requesting scopes for the Slack App
     
 After the slack app is created, we'll need to request scopes for your app. 
 Scopes give the app permission to perform actions, such as reading slack messages and replies.
-To request scopes, open the slack app and click on **OAuth & Permissions** in the app management page.
+To request scopes, open the Slack App and click on **OAuth & Permissions** in the app management page.
 1. Within **OAuth & Permissions**, scroll down to Scopes.
 1. Under **User Token Scopes**, Select **Add an OAuth Scope** and add the following scopes.
     ![Slack App OAuth Scopes](slack-cloud-oauth-scopes.png)
@@ -135,9 +135,9 @@ most recent activity.
 
 Slack apps listen and respond to events from your workspace. To enable webhooks for the Slack app, configure it to respond to events
 such as, when a message is posted to a channel or when a new channel is created.<br/><br/>
-To configure the slack app to respond to events
+To configure the Slack app to respond to events
 
-1. Open the slack app and Select **Event Subscriptions** from the app management page
+1. Open the Slack app and Select **Event Subscriptions** from the app management page
 1. Toggle **Enable events** to ON
 1. Within **Subscribe to events on behalf of users**, select **Add Workspace event** and subscribe to the below events
 
