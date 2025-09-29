@@ -1,16 +1,12 @@
----
-page_title: Add a data source - Slack
-description: >-
-  Add Slack as a data source for Vault Radar.
----
-
 # Add a data source - Slack
 
-> **_NOTE:_**  This feature is currently available as a beta feature. The beta functionality is stable but possibly incomplete and subject to change. We strongly discourage using beta features in production.
+<br/>
 
+> **NOTE:**  This feature is currently available as a **BETA** feature. The beta functionality is stable but possibly incomplete and subject to change. We strongly discourage using beta features in production.
 
-Vault Radar allows you to connect to any workspace on [Slack
-Cloud](#add-slack-cloud).
+<br/>
+
+Vault Radar allows you to connect to any workspace on [Slack Cloud](#add-slack-cloud).
 
 ## Add Slack Cloud
 
