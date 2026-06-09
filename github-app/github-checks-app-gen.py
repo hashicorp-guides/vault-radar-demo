@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     name = 'HashiCorp Vault Radar Checks App'
     domain = 'github.com'
-    webhook_url =  'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events'
+    webhook_url = 'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events'
     if choice == '1':
         name = input('Enter a unique GitHub app name: ')
     elif choice == '2':
@@ -42,11 +42,16 @@ if __name__ == '__main__':
         'public': True,
         'webhook_active': True,
         'url': 'https://www.hashicorp.com/',
+        'setup_url': 'https://vault-radar-portal.cloud.hashicorp.com/oauth/github/callback',
+        'setup_on_update': True,
         'checks': 'write',
-        'events[]': ['check_run', 'check_suite', 'pull_request'],
+        'administration': 'read',
+        'contents': 'read',
+        'events[]': ['check_run', 'check_suite', 'pull_request', 'push', 'repository'],
+        'organization_hooks': 'read',
         'pull_requests': 'read',
+        'webhooks': 'read',
     }
     query_param_string = urlencode(query_params, doseq=True, safe=':/?=[]')
-    
     url = f'https://{domain}/settings/apps/new?{query_param_string}'
     logger.info(url)
