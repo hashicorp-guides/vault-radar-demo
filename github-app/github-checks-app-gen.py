@@ -22,31 +22,45 @@ if __name__ == '__main__':
     print("2. GitHub Enterprise Server")
     choice = input("Enter 1 or 2: ")
 
-    name = 'HashiCorp Vault Radar Checks App'
     domain = 'github.com'
-    webhook_url =  'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events'
-    if choice == '1':
-        name = input('Enter a unique GitHub app name: ')
-    elif choice == '2':
+    webhook_url = 'https://api.hashicorp.cloud/2023-05-01/vault-radar/api/github-apps/events'
+    if choice == '2':
         domain = input('Enter your GitHub Enterprise Server domain name (i.e. github.companyname.com): ')
         domain = urlparse(domain if '//' in domain else f'//{domain}').netloc
         webhook_url = webhook_url + f"?domain={domain}"
-    else:
+    elif choice != '1':
         print("Invalid option")
         sys.exit()
 
+    name = input(
+        'Enter a unique GitHub app name (lowercase letters and dashes) [hashicorp-vault-radar]: '
+    ).strip() or 'hashicorp-vault-radar'
+
+    webhook_secret = token_urlsafe(nbytes=32)
+
     query_params = {
         'name': name,
-        'webhook_secret': token_urlsafe(nbytes=32),
         'webhook_url': webhook_url,
-        'public': True,
-        'webhook_active': True,
+        'webhook_active': 'true',
         'url': 'https://www.hashicorp.com/',
+        'setup_url': 'https://vault-radar-portal.cloud.hashicorp.com/oauth/github/callback',
+        'setup_on_update': 'true',
         'checks': 'write',
-        'events[]': ['check_run', 'check_suite', 'pull_request'],
+        'administration': 'read',
+        'contents': 'read',
+        'events[]': ['check_run', 'check_suite', 'pull_request', 'push', 'repository'],
+        'organization_hooks': 'read',
         'pull_requests': 'read',
+        'webhooks': 'read',
     }
     query_param_string = urlencode(query_params, doseq=True, safe=':/?=[]')
-    
     url = f'https://{domain}/settings/apps/new?{query_param_string}'
-    logger.info(url)
+    logger.info('\nApp registration URL:\n%s', url)
+    logger.info(
+        '\nManual steps before clicking Create GitHub App:\n'
+        '1. Paste this value into the Webhook secret field:\n'
+        '   %s\n'
+        '2. Under "Where can this GitHub App be installed?", select "Any account".\n'
+        '\nStore the webhook secret securely; you will also need it to configure the app in Vault Radar.',
+        webhook_secret,
+    )
